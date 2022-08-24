@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1031119781239",
+    "firebase_url": "https://projectbamx-2022-default-rtdb.firebaseio.com",
+    "project_id": "projectbamx-2022",
+    "storage_bucket": "projectbamx-2022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031119781239:android:51295e93b9d7f97c437572",
+        "android_client_info": {
+          "package_name": "mx.itesm.bamx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031119781239-7tufi0n2mjfp3ifj1s4cudr87kp4mo11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkt4UWNCgjk90DundAWBbosdBn9-XfFDc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031119781239-7tufi0n2mjfp3ifj1s4cudr87kp4mo11.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
