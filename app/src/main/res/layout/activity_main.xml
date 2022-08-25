@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/greetingMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.391" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/googleLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FFDADA"
@@ -40,7 +40,7 @@
         app:layout_constraintVertical_bias="0.516" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/mailLoginButton"
         android:layout_width="210dp"
         android:layout_height="49dp"
         android:backgroundTint="#FCEEF5"
