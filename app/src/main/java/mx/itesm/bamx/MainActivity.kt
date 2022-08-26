@@ -19,11 +19,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }*/
 
-    fun next(view: View?){
-
-    }
-
-    fun test(view: View?){
-        Toast.makeText(this, "Imagen clickeada", Toast.LENGTH_SHORT).show()
+    fun goToMap(view: View?){
+        val intent = Intent(this, MapActivity::class.java)
+        startActivity(intent)
     }
 }

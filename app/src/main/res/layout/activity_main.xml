@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#FFDADA"
         android:drawableLeft="@drawable/googleloginicon"
-        android:icon="@drawable/googleloginicon"
+        android:onClick="goToMap"
         android:text="Iniciar con Google"
         android:textColor="#40000B"
         android:textSize="12sp"
@@ -44,6 +44,7 @@
         android:layout_width="210dp"
         android:layout_height="49dp"
         android:backgroundTint="#FCEEF5"
+        android:onClick="goToMap"
         android:text="Iniciar con correo"
         android:textColor="#40000B"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,15 +56,14 @@
         app:strokeWidth="1dp" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133"
+        app:layout_constraintVertical_bias="0.15"
         app:srcCompat="@drawable/bamxlogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
