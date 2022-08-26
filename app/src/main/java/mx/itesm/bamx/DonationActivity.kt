@@ -14,6 +14,7 @@ class DonationActivity : AppCompatActivity() {
     fun goToMapHome(view : View?){
 
         val intent = Intent(this, MapActivity::class.java)
-        startActivity(intent)
+        /*startActivity(intent)*/
+        finish()
     }
 }
