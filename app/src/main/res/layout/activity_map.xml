@@ -62,19 +62,19 @@
         app:layout_constraintVertical_bias="0.166" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/donationIcon"
         android:layout_width="50dp"
         android:layout_height="46dp"
         android:onClick="goToDonations"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintStart_toEndOf="@+id/homeIcon"
         app:layout_constraintTop_toTopOf="@+id/container"
         app:srcCompat="@drawable/donationicon" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/homeIcon"
         android:layout_width="49dp"
         android:layout_height="48dp"
         app:layout_constraintBottom_toBottomOf="@+id/container"
@@ -84,11 +84,11 @@
         app:srcCompat="@drawable/homeicon" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/rewardsIcon"
         android:layout_width="50dp"
         android:layout_height="49dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView7"
+        app:layout_constraintEnd_toStartOf="@+id/homeIcon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/container"
         app:srcCompat="@drawable/rewardsicon" />
