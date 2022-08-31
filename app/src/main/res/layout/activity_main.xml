@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#FFDADA"
         android:drawableLeft="@drawable/googleloginicon"
-        android:onClick="goToMap"
         android:text="Iniciar con Google"
         android:textColor="#40000B"
         android:textSize="12sp"
