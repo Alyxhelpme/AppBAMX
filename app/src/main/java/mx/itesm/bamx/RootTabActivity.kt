@@ -1,4 +1,4 @@
-package mx.itesm.bamx.activities
+package mx.itesm.bamx
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

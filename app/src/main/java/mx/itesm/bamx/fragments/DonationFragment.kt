@@ -1,4 +1,4 @@
-package mx.itesm.bamx.activities.fragments
+package mx.itesm.bamx.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

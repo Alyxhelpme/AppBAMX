@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".activities.RootTabActivity"
+            android:name=".RootTabActivity"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -31,7 +31,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_API_KEY" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
