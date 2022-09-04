@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/custom_button_1.xml" value="0.21" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/custom_button_2.xml" value="0.2015" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/gaelr/Documents/AppBAMX/AppBAMX/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/gaelr/Documents/AppBAMX/AppBAMX/app/src/main/res/layout/activity_root_tab.xml" value="0.136" />
@@ -12,6 +15,7 @@
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
