@@ -57,7 +57,9 @@ class DonationFragment : Fragment() {
 
         // Inflate the layout for this fragment
 
-        // datos
+        // datos (WE JUST GOTTA MAKE IT WORK WITH FIREBASE, BUT ALL THE STRUCTURE IS DONE)
+        //        we also gotta make them clickable but it ain't hard, found an indian dude
+        //        that explains how to do it
         nombres = ArrayList()
 
         nombres.add(items[0])
@@ -76,8 +78,6 @@ class DonationFragment : Fragment() {
         recyclerView = view.findViewById(R.id.itemsRV) // this may not work
 
         // datos -> gui
-
-
         // creador adaptador
         val adapter = DonationAdapter(nombres, precios)
 

@@ -16,13 +16,6 @@ class RootTabActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        if (Build.VERSION.SDK_INT >= 21) {
-            val window = this.window
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.statusBarColor = this.resources.getColor(R.color.white)
-        }
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_root_tab)
         tabLayout = findViewById(R.id.tabLayout)
