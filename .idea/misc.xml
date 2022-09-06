@@ -5,7 +5,18 @@
       <map>
         <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/custom_button_1.xml" value="0.21" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/custom_button_2.xml" value="0.2015" />
-        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/fragment_donation_custom_tvheader.xml" value="0.2025" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/fragment_donation_lv.xml" value="0.1" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/fragment_donation_product_container.xml" value="0.203" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/fragment_rewards_custom_tvheader.xml" value="0.2015" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/root_tab_custom.xml" value="0.232" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_main.xml" value="0.203326416015625" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_root_tab.xml" value="0.25" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_donation.xml" value="0.25" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_donation_lv.xml" value="0.1" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_rewards.xml" value="0.25" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/item_list.xml" value="0.33" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/test.xml" value="0.19427083333333334" />
         <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/gaelr/Documents/AppBAMX/AppBAMX/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/gaelr/Documents/AppBAMX/AppBAMX/app/src/main/res/layout/activity_root_tab.xml" value="0.136" />
