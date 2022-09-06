@@ -24,8 +24,12 @@
 
     <Button
         android:id="@+id/googleLoginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="210dp"
+        android:layout_height="49dp"
+
+        android:width="180dp"
+
+        android:background="@drawable/custom_button_1"
         android:backgroundTint="#FFDADA"
         android:drawableLeft="@drawable/googleloginicon"
         android:text="Iniciar con Google"
@@ -42,7 +46,8 @@
         android:id="@+id/mailLoginButton"
         android:layout_width="210dp"
         android:layout_height="49dp"
-        android:backgroundTint="#FCEEF5"
+
+        android:background="@drawable/custom_button_2"
         android:onClick="goToMap"
         android:text="Iniciar con correo"
         android:textColor="#40000B"
@@ -52,7 +57,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.619"
         app:strokeColor="#EA2727"
-        app:strokeWidth="1dp" />
+        app:strokeWidth="3dp" />
 
     <ImageView
         android:id="@+id/imageView"
