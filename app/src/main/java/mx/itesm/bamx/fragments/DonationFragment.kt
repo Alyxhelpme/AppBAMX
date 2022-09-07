@@ -5,12 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import mx.itesm.bamx.DonationAdapter
-import mx.itesm.bamx.Product
+import supportClasses.DonationAdapter
 import mx.itesm.bamx.R
 
 

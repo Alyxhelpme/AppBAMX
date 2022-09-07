@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import mx.itesm.bamx.RootTabActivity
 import mx.itesm.bamx.fragments.DonationFragment
+import mx.itesm.bamx.fragments.HomeFragment
 import mx.itesm.bamx.fragments.MapFragment
-import mx.itesm.bamx.fragments.RewardsFragment
 
 
 class TabPageAdapter(activity: RootTabActivity, private val tabCount : Int) : FragmentStateAdapter(activity) {
@@ -13,8 +13,8 @@ class TabPageAdapter(activity: RootTabActivity, private val tabCount : Int) : Fr
 
     override fun createFragment(position: Int): Fragment {
         return when(position){
-            0 -> RewardsFragment()
-            1 -> MapFragment()
+            0 -> MapFragment()
+            1 -> HomeFragment()
             2 -> DonationFragment()
             else -> MapFragment()
         }

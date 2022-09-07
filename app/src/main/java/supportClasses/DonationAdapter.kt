@@ -1,12 +1,12 @@
-package mx.itesm.bamx
+package supportClasses
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
+import mx.itesm.bamx.R
 
 class DonationAdapter(var productos : ArrayList<String>, var prices : ArrayList<String>) :
     RecyclerView.Adapter<DonationAdapter.DonationViewHolder>(){
