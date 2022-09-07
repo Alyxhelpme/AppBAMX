@@ -62,8 +62,15 @@ class DonationFragment : Fragment() {
 
             for (documentoActual in result) {
                 Log.d(
-                    "FIRESTORE", "${documentoActual.id} ${documentoActual.data}"
+                    "FIRESTORE", "${documentoActual.id}"
                 )
+                Log.d(
+                    "FIRESTORE", "${documentoActual.get("precio")}"
+                )
+                Log.d(
+                    "FIRESTORE",   "${documentoActual.getString("producto")}"
+                )
+
             }
         }.addOnFailureListener{ error ->
             Log.e("FIRESTORE", "error in query: $error")
