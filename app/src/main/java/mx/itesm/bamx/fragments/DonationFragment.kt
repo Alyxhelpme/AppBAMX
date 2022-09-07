@@ -1,14 +1,19 @@
 package mx.itesm.bamx.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import supportClasses.DonationAdapter
 import mx.itesm.bamx.R
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -42,8 +47,53 @@ class DonationFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+// query to solicite data and obtain information
+        val coleccion = Firebase.firestore.collection("ProductList")
 
+        val queryTask = coleccion.get()
+
+        queryTask.addOnSuccessListener { result ->
+            // recorrer datos
+            Toast.makeText(
+                this.context,
+                "QUERY EXITOSO",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            for (documentoActual in result) {
+                Log.d(
+                    "FIRESTORE", "${documentoActual.id} ${documentoActual.data}"
+                )
+            }
+        }.addOnFailureListener{ error ->
+            Log.e("FIRESTORE", "error in query: $error")
+        }
     }
+
+    fun collectData(view: View?){
+        // query to solicite data and obtain information
+        val coleccion = Firebase.firestore.collection("ProductList")
+
+        val queryTask = coleccion.get()
+
+        queryTask.addOnSuccessListener { result ->
+            // recorrer datos
+            Toast.makeText(
+                this.context,
+                "QUERY EXITOSO",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            for (documentoActual in result) {
+                Log.d(
+                    "FIRESTORE", "${documentoActual.id} ${documentoActual.data.get("prices")}"
+                )
+            }
+        }.addOnFailureListener{ error ->
+            Log.e("FIRESTORE", "error in query: $error")
+        }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
