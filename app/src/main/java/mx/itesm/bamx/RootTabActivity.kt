@@ -24,6 +24,8 @@ class RootTabActivity : AppCompatActivity() {
     }
 
     private fun setUpTabBar(){
+        viewPager.isUserInputEnabled = false
+
         val adapter = TabPageAdapter(this, tabLayout.tabCount)
         viewPager.adapter = adapter
 
