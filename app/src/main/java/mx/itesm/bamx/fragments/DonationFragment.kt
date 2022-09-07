@@ -5,7 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import mx.itesm.bamx.DonationAdapter
+import mx.itesm.bamx.Product
 import mx.itesm.bamx.R
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,20 +29,67 @@ class DonationFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit var recyclerView : RecyclerView
+
+    lateinit var nombres : ArrayList<String>
+    lateinit var precios : ArrayList<String>
+
+    private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
+    private val prices= arrayOf("$70", "$120", "$80", "$30")
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val view: View = inflater.inflate(R.layout.fragment_donation, container, false)
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_donation, container, false)
+
+        // datos (WE JUST GOTTA MAKE IT WORK WITH FIREBASE, BUT ALL THE STRUCTURE IS DONE)
+        //        we also gotta make them clickable but it ain't hard, found an indian dude
+        //        that explains how to do it
+        nombres = ArrayList()
+
+        nombres.add(items[0])
+        nombres.add(items[1])
+        nombres.add(items[2])
+        nombres.add(items[3])
+
+        precios = ArrayList()
+
+        precios.add(prices[0])
+        precios.add(prices[1])
+        precios.add(prices[2])
+        precios.add(prices[3])
+
+        // gui
+        recyclerView = view.findViewById(R.id.itemsRV) // this may not work
+
+        // datos -> gui
+        // creador adaptador
+        val adapter = DonationAdapter(nombres, precios)
+
+        //layout manager
+        val llm = LinearLayoutManager(activity)
+        llm.orientation = LinearLayoutManager.VERTICAL
+
+        //asignamos llm a GUI
+        recyclerView.layoutManager = llm
+        recyclerView.adapter = adapter
+
+        return view
     }
 
     companion object {
@@ -56,5 +110,7 @@ class DonationFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+
     }
+
 }

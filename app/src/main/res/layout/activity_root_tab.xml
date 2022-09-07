@@ -4,15 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FCEEF5"
     tools:context=".RootTabActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
-        android:layout_width="409dp"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@drawable/root_tab_custom"
+        app:circularflow_radiusInDP="20pd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:tabIndicatorColor="#554243">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -32,10 +36,15 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
-        android:layout_width="409dp"
-        android:layout_height="681dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FCEEF5"
+        android:backgroundTint="#FCEEF5"
+        android:backgroundTintMode="screen"
         app:layout_constraintBottom_toTopOf="@+id/tabLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
