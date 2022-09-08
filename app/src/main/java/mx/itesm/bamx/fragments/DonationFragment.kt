@@ -54,7 +54,18 @@ class DonationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
         val view: View = inflater.inflate(R.layout.fragment_donation, container, false)
+
+        // gui
+        recyclerView = view.findViewById(R.id.itemsRV) // this may not work
+
+        //layout manager
+        val llm = LinearLayoutManager(activity)
+        llm.orientation = LinearLayoutManager.VERTICAL
+
+        //asignamos llm a GUI
+        recyclerView.layoutManager = llm
 
         // Inflate the layout for this fragment
 
@@ -105,25 +116,16 @@ class DonationFragment : Fragment() {
                     "FIRESTORE",   "${documentoActual.getString("producto")}"
                 )
 
+                // datos -> gui
+                // creador adaptador
+                val adapter = DonationAdapter(nombres, precios)
+
+                recyclerView.adapter = adapter
+
             }
         }.addOnFailureListener{ error ->
             Log.e("FIRESTORE", "error in query: $error")
         }
-
-        // gui
-        recyclerView = view.findViewById(R.id.itemsRV) // this may not work
-
-        // datos -> gui
-        // creador adaptador
-        val adapter = DonationAdapter(nombres, precios)
-
-        //layout manager
-        val llm = LinearLayoutManager(activity)
-        llm.orientation = LinearLayoutManager.VERTICAL
-
-        //asignamos llm a GUI
-        recyclerView.layoutManager = llm
-        recyclerView.adapter = adapter
 
         return view
     }
