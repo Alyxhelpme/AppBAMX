@@ -1,5 +1,6 @@
 package mx.itesm.bamx.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.DocumentChange
 import mx.itesm.bamx.R
+import mx.itesm.bamx.SearchCenterActivity
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -71,5 +73,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             error ->
             Log.e("Firestore", "error: $error")
         }
+    }
+
+    fun goSearch(view: View){
+        val intent = Intent(requireActivity(), SearchCenterActivity::class.java)
+        startActivity(intent)
     }
 }
