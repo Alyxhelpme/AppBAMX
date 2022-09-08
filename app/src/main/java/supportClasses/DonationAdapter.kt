@@ -44,13 +44,19 @@ class DonationAdapter(var productos : ArrayList<String>, var prices : ArrayList<
     override fun onBindViewHolder(holder: DonationViewHolder, position: Int) {
 
         holder.nombre.text = productos[position]
-        holder.price.text = prices[position]
+        holder.price.text = "$" + prices[position] + " MXN"
 
     }
 
     // obtener total de elementos
     override fun getItemCount(): Int {
         return productos.size
+    }
+
+    fun getPrice(position: Int): Int {
+
+        return prices[position].toInt()
+
     }
 
 }
