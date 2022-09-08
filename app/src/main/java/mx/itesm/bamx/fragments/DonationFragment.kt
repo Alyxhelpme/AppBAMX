@@ -37,7 +37,7 @@ class DonationFragment : Fragment() {
     lateinit var precios : ArrayList<String>
 
     private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
-    private val prices= arrayOf("$70", "$120", "$80", "$30")
+    //private val prices= arrayOf("$70", "$120", "$80", "$30")
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -47,60 +47,7 @@ class DonationFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-// query to solicite data and obtain information
-        val coleccion = Firebase.firestore.collection("ProductList")
-
-        val queryTask = coleccion.get()
-
-        queryTask.addOnSuccessListener { result ->
-            // recorrer datos
-            Toast.makeText(
-                this.context,
-                "QUERY EXITOSO",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            for (documentoActual in result) {
-                Log.d(
-                    "FIRESTORE", "${documentoActual.id}"
-                )
-                Log.d(
-                    "FIRESTORE", "${documentoActual.get("precio")}"
-                )
-                Log.d(
-                    "FIRESTORE",   "${documentoActual.getString("producto")}"
-                )
-
-            }
-        }.addOnFailureListener{ error ->
-            Log.e("FIRESTORE", "error in query: $error")
-        }
     }
-
-    fun collectData(view: View?){
-        // query to solicite data and obtain information
-        val coleccion = Firebase.firestore.collection("ProductList")
-
-        val queryTask = coleccion.get()
-
-        queryTask.addOnSuccessListener { result ->
-            // recorrer datos
-            Toast.makeText(
-                this.context,
-                "QUERY EXITOSO",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            for (documentoActual in result) {
-                Log.d(
-                    "FIRESTORE", "${documentoActual.id} ${documentoActual.data.get("prices")}"
-                )
-            }
-        }.addOnFailureListener{ error ->
-            Log.e("FIRESTORE", "error in query: $error")
-        }
-    }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -116,17 +63,52 @@ class DonationFragment : Fragment() {
         //        that explains how to do it
         nombres = ArrayList()
 
-        nombres.add(items[0])
-        nombres.add(items[1])
-        nombres.add(items[2])
-        nombres.add(items[3])
+        //nombres.add(items[0])
+        //nombres.add(items[1])
+        //nombres.add(items[2])
+        //nombres.add(items[3])
 
         precios = ArrayList()
+        // query to solicite data and obtain information
+        val coleccion = Firebase.firestore.collection("ProductList")
 
-        precios.add(prices[0])
-        precios.add(prices[1])
-        precios.add(prices[2])
-        precios.add(prices[3])
+        val queryTask = coleccion.get()
+
+        queryTask.addOnSuccessListener { result ->
+            // recorrer datos
+            Toast.makeText(
+                this.context,
+                "QUERY EXITOSO",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            precios = ArrayList()
+            for (documentoActual in result) {
+                Log.d(
+                    "FIRESTORE", "${documentoActual.id}"
+                )
+                var precio = documentoActual.get("precio")
+                precios.add(precio.toString())
+                nombres.add(documentoActual.get("producto").toString())
+                Log.d("PRECIOS: ", precios.toString())
+                Log.d("NOMBRES: ", nombres.toString())
+
+
+
+
+
+
+                Log.d(
+                    "FIRESTORE", "${documentoActual.get("precio")}"
+                )
+                Log.d(
+                    "FIRESTORE",   "${documentoActual.getString("producto")}"
+                )
+
+            }
+        }.addOnFailureListener{ error ->
+            Log.e("FIRESTORE", "error in query: $error")
+        }
 
         // gui
         recyclerView = view.findViewById(R.id.itemsRV) // this may not work
