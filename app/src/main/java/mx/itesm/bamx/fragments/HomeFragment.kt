@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import mx.itesm.bamx.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,6 +23,10 @@ class HomeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit var progressBar1 : ProgressBar
+    lateinit var progressBar2 : ProgressBar
+    lateinit var progressBar3: ProgressBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,8 +39,33 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val view: View = inflater.inflate(R.layout.fragment_home, container, false)
+
+        progressBar1 = view.findViewById(R.id.progressBar1)
+        progressBar1.max = 100
+        progressBar1.min = 0
+        val currentProgress1 = 50
+        progressBar1.progress = currentProgress1
+
+        progressBar2 = view.findViewById(R.id.progressBar2)
+        progressBar2.max = 200
+        progressBar2.min = 0
+        val currentProgress2 = 50
+        progressBar2.progress = currentProgress2
+
+        progressBar3 = view.findViewById(R.id.progressBar3)
+        progressBar3.max = 50
+        progressBar3.min = 0
+        val currentProgress3 = 50
+        progressBar3.progress = currentProgress3
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return view
+
+
+
     }
 
     companion object {
