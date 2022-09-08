@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -25,6 +26,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var map : GoogleMap
     private lateinit var collection : CollectionReference
+    private lateinit var searchButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +38,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_map, container, false)
+        val view = inflater.inflate(R.layout.fragment_map, container, false)
+        searchButton = view.findViewById(R.id.searchButton)
+        searchButton.setOnClickListener{goSearch()}
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
@@ -75,7 +79,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    fun goSearch(view: View){
+    fun goSearch(){
         val intent = Intent(requireActivity(), SearchCenterActivity::class.java)
         startActivity(intent)
     }

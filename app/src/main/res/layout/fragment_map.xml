@@ -23,14 +23,13 @@
         tools:context=".fragments.MapFragment" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/searchButton"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:background="@drawable/custom_button_1"
         android:drawableLeft="@drawable/search"
         android:drawablePadding="-10dp"
-        android:onClick="goSearch"
         android:text="@string/searchText"
         android:textColor="#40000B"
         app:layout_constraintBottom_toTopOf="@+id/map"
