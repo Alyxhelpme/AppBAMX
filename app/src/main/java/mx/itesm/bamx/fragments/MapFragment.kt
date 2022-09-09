@@ -1,6 +1,7 @@
 package mx.itesm.bamx.fragments
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -17,12 +20,12 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.DocumentChange
 import mx.itesm.bamx.R
 import mx.itesm.bamx.SearchCenterActivity
+import java.util.jar.Manifest
 
 
-class MapFragment : Fragment(), OnMapReadyCallback {
+class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener {
 
     private lateinit var map : GoogleMap
     private lateinit var collection : CollectionReference
@@ -30,8 +33,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         collection = Firebase.firestore.collection("centers")
-        fetchCenters()
+        collection = Firebase.firestore.collection("centers")
     }
 
     override fun onCreateView(
@@ -48,7 +50,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         createFragment()
     }
 
-
+// ======================================= MAP METHODS =============================================
     private fun createFragment(){
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -56,12 +58,20 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(p0: GoogleMap) {
         map = p0
-        //Toast.makeText(this.context,"HOLA", Toast.LENGTH_SHORT).show()
+        if(ContextCompat.checkSelfPermission(requireActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            map.isMyLocationEnabled = true
+            map.setOnMyLocationButtonClickListener(this)
+        } else {
+            val permisos = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
+            requestPermissions(permisos, 0)
+        }
+        val cameraPosition = LatLng(20.737122,-103.454266)
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraPosition, 18f))
+        fetchCenters()
     }
 
     private fun fetchCenters(){
         val requestCenters = collection.get()
-
         requestCenters.addOnSuccessListener {
             result ->
             for(document in result){
@@ -79,7 +89,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    fun goSearch(){
+    override fun onMyLocationButtonClick(): Boolean {
+        return false
+    }
+
+    private fun goSearch(){
         val intent = Intent(requireActivity(), SearchCenterActivity::class.java)
         startActivity(intent)
     }
