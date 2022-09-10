@@ -66,7 +66,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
             requestPermissions(permisos, 0)
         }
         val cameraPosition = LatLng(20.737122,-103.454266)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraPosition, 18f))
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraPosition, 15f))
         fetchCenters()
     }
 
@@ -90,6 +90,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
     }
 
     override fun onMyLocationButtonClick(): Boolean {
+        map.animateCamera(CameraUpdateFactory.zoomIn())
+        Toast.makeText(requireContext(), "klasjhdfas",Toast.LENGTH_SHORT).show()
         return false
     }
 
