@@ -95,4 +95,11 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, RootTabActivity::class.java)
         startActivity(intent)
     }
+
+    override fun onStart() {
+        super.onStart()
+        if (firebaseAuth.currentUser != null){
+            startActivity(Intent(this, RootTabActivity::class.java))
+        }
+    }
 }
