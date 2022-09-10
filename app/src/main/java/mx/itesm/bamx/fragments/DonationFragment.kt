@@ -1,14 +1,19 @@
 package mx.itesm.bamx.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import supportClasses.DonationAdapter
 import mx.itesm.bamx.R
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,7 +37,7 @@ class DonationFragment : Fragment() {
     lateinit var precios : ArrayList<String>
 
     private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
-    private val prices= arrayOf("$70", "$120", "$80", "$30")
+    //private val prices= arrayOf("$70", "$120", "$80", "$30")
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -42,7 +47,6 @@ class DonationFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
     }
 
     override fun onCreateView(
@@ -50,7 +54,18 @@ class DonationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
         val view: View = inflater.inflate(R.layout.fragment_donation, container, false)
+
+        // gui
+        recyclerView = view.findViewById(R.id.itemsRV) // this may not work
+
+        //layout manager
+        val llm = LinearLayoutManager(activity)
+        llm.orientation = LinearLayoutManager.VERTICAL
+
+        //asignamos llm a GUI
+        recyclerView.layoutManager = llm
 
         // Inflate the layout for this fragment
 
@@ -59,32 +74,58 @@ class DonationFragment : Fragment() {
         //        that explains how to do it
         nombres = ArrayList()
 
-        nombres.add(items[0])
-        nombres.add(items[1])
-        nombres.add(items[2])
-        nombres.add(items[3])
+        //nombres.add(items[0])
+        //nombres.add(items[1])
+        //nombres.add(items[2])
+        //nombres.add(items[3])
 
         precios = ArrayList()
+        // query to solicite data and obtain information
+        val coleccion = Firebase.firestore.collection("ProductList")
 
-        precios.add(prices[0])
-        precios.add(prices[1])
-        precios.add(prices[2])
-        precios.add(prices[3])
+        val queryTask = coleccion.get()
 
-        // gui
-        recyclerView = view.findViewById(R.id.itemsRV) // this may not work
+        queryTask.addOnSuccessListener { result ->
+            // recorrer datos
+            Toast.makeText(
+                this.context,
+                "QUERY EXITOSO",
+                Toast.LENGTH_SHORT
+            ).show()
 
-        // datos -> gui
-        // creador adaptador
-        val adapter = DonationAdapter(nombres, precios)
+            precios = ArrayList()
+            for (documentoActual in result) {
+                Log.d(
+                    "FIRESTORE", "${documentoActual.id}"
+                )
+                var precio = documentoActual.get("precio")
+                precios.add(precio.toString())
+                nombres.add(documentoActual.get("producto").toString())
+                Log.d("PRECIOS: ", precios.toString())
+                Log.d("NOMBRES: ", nombres.toString())
 
-        //layout manager
-        val llm = LinearLayoutManager(activity)
-        llm.orientation = LinearLayoutManager.VERTICAL
 
-        //asignamos llm a GUI
-        recyclerView.layoutManager = llm
-        recyclerView.adapter = adapter
+
+
+
+
+                Log.d(
+                    "FIRESTORE", "${documentoActual.get("precio")}"
+                )
+                Log.d(
+                    "FIRESTORE",   "${documentoActual.getString("producto")}"
+                )
+
+                // datos -> gui
+                // creador adaptador
+                val adapter = DonationAdapter(nombres, precios)
+
+                recyclerView.adapter = adapter
+
+            }
+        }.addOnFailureListener{ error ->
+            Log.e("FIRESTORE", "error in query: $error")
+        }
 
         return view
     }
