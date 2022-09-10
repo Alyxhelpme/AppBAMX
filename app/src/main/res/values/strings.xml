@@ -2,6 +2,6 @@
     <string name="app_name">Bamx</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="prefs_file">mx.itesm.bamx.PREF_FILE_KEY</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="searchText">Busca un centro de acopio</string>
+    <string name="becomeAssociate">Vuélvete asociado</string>
 </resources>
