@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var gsc : GoogleSignInClient
     private lateinit var gso : GoogleSignInOptions
     private lateinit var googleButton : Button
+    private lateinit var emailButton : Button
 
     private companion object{
         private const val RC_SIGN_IN = 100
@@ -37,20 +38,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         googleButton = findViewById(R.id.googleLoginButton)
-
-        //Configure google signIn
-        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        gsc = GoogleSignIn.getClient(this, gso)
+        emailButton = findViewById(R.id.mailLoginButton)
 
         //Initialize Firebase auth
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
 
+        emailButton.setOnClickListener{
+            //Something
+            startActivity(Intent(this, EmailLogin::class.java))
+        }
+
         googleButton.setOnClickListener{
+            //Configure google signIn
+            gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+
+            gsc = GoogleSignIn.getClient(this, gso)
+
             val intent = gsc.signInIntent
             startActivityForResult(intent, RC_SIGN_IN)
         }
