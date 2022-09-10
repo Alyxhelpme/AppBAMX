@@ -18,6 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
+            android:text="@string/hello_blank_fragment"
+
             tools:layout_editor_absoluteX="-26dp"
             tools:layout_editor_absoluteY="-121dp" />
 
@@ -69,7 +71,7 @@
 
             android:layout_marginStart="44dp"
             android:layout_marginTop="10dp"
-
+            android:background="@drawable/custom_progressbar"
             android:backgroundTint="#3F000A"
             android:backgroundTintMode="add"
             android:foregroundTint="#3F000A"
@@ -79,6 +81,8 @@
             android:progress="30"
             android:progressBackgroundTint="#FFD8D9"
             android:progressBackgroundTintMode="src_in"
+
+            android:progressDrawable="@drawable/custom_progressbar"
 
             android:progressTint="#930029"
             android:progressTintMode="src_in"
@@ -108,6 +112,7 @@
             android:layout_marginStart="44dp"
             android:layout_marginTop="10dp"
 
+            android:background="@drawable/custom_progressbar"
             android:backgroundTint="#3F000A"
             android:backgroundTintMode="add"
             android:foregroundTint="#3F000A"
@@ -117,7 +122,7 @@
             android:progress="30"
             android:progressBackgroundTint="#FFD8D9"
             android:progressBackgroundTintMode="src_in"
-
+            android:progressDrawable="@drawable/custom_progressbar"
             android:progressTint="#930029"
             android:progressTintMode="src_in"
             app:layout_constraintStart_toStartOf="parent"
@@ -145,7 +150,7 @@
 
             android:layout_marginStart="44dp"
             android:layout_marginTop="10dp"
-
+            android:background="@drawable/custom_progressbar"
             android:backgroundTint="#3F000A"
             android:backgroundTintMode="add"
             android:foregroundTint="#3F000A"
@@ -156,6 +161,7 @@
             android:progressBackgroundTint="#FFD8D9"
             android:progressBackgroundTintMode="src_in"
 
+            android:progressDrawable="@drawable/custom_progressbar"
             android:progressTint="#930029"
             android:progressTintMode="src_in"
             app:layout_constraintStart_toStartOf="parent"
