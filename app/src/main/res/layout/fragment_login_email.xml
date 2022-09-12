@@ -8,8 +8,20 @@
     android:background="@color/mainB"
     tools:context=".fragments.loginEmailFragment">
 
+    <TextView
+        android:id="@+id/noAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="58dp"
+        android:text="¿NO TIENES CUENTA?"
+        android:textColor="#40000B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
     <EditText
-        android:id="@+id/passwordTextInput2"
+        android:id="@+id/passwordLoginInput"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="33dp"
@@ -24,48 +36,47 @@
         android:textColor="#40000B"
         android:textColorHint="#5E5455"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/registerButton2"
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTextInput2" />
+        app:layout_constraintTop_toBottomOf="@+id/emailLoginInput" />
 
     <TextView
         android:id="@+id/greetingMessage3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="26dp"
         android:fontFamily="sans-serif-black"
         android:text="Iniciar sesión"
         android:textColor="#BE0035"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.181" />
+        app:layout_constraintBottom_toTopOf="@+id/emailLoginInput"
+        app:layout_constraintEnd_toEndOf="@+id/emailLoginInput"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/registerButton2"
+        android:id="@+id/loginButton"
         android:layout_width="210dp"
         android:layout_height="0dp"
 
-        android:layout_marginBottom="86dp"
+        android:layout_marginBottom="9dp"
         android:background="@drawable/custom_button_2"
         android:text="Iniciar sesión"
         android:textColor="#40000B"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/noAccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordTextInput2"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLoginInput"
         app:strokeColor="#EA2727"
         app:strokeWidth="3dp" />
 
     <EditText
-        android:id="@+id/emailTextInput2"
+        android:id="@+id/emailLoginInput"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="33dp"
-        android:layout_marginTop="142dp"
         android:layout_marginEnd="33dp"
         android:layout_marginBottom="29dp"
         android:background="@drawable/custom_button_1"
@@ -77,9 +88,9 @@
         android:textColor="#40000B"
         android:textColorHint="#5E5455"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/passwordTextInput2"
+        app:layout_constraintBottom_toTopOf="@+id/passwordLoginInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/greetingMessage3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

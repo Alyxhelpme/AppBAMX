@@ -14,15 +14,16 @@
         android:id="@+id/greetingMessage2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginBottom="26dp"
         android:fontFamily="sans-serif-black"
         android:text="Crear cuenta"
         android:textColor="#BE0035"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintBottom_toTopOf="@+id/emailTextInput"
+        app:layout_constraintStart_toStartOf="@+id/emailTextInput"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/passwordTextInput"
@@ -46,11 +47,11 @@
         app:layout_constraintTop_toBottomOf="@+id/emailTextInput" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/alreadyRegistered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginBottom="16dp"
         android:text="¿YA ESTÁS REGISTRADO?"
         android:textColor="#40000B"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -83,11 +84,11 @@
         android:layout_width="210dp"
         android:layout_height="0dp"
 
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/custom_button_2"
         android:text="REGISTRARSE"
         android:textColor="#40000B"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintBottom_toTopOf="@+id/alreadyRegistered"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordConfTextInput"
@@ -99,7 +100,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="33dp"
-        android:layout_marginTop="125dp"
         android:layout_marginEnd="33dp"
         android:layout_marginBottom="29dp"
         android:background="@drawable/custom_button_1"
@@ -114,6 +114,6 @@
         app:layout_constraintBottom_toTopOf="@+id/passwordTextInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/greetingMessage2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
