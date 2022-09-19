@@ -1,12 +1,17 @@
 package mx.itesm.bamx.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import mx.itesm.bamx.R
+import supportClasses.DonationAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,26 +44,71 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var aceite = 0
+        var arroz = 0
+        var garbanzo = 0
+        var papel = 0
+        var frijol = 0
+        var canasta = 0
+        var limpieza = 0
+        var azucar = 0
+
+        val currentProgress1 = arroz
+        val currentProgress2 = 50
+        val currentProgress3 = 50
 
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
         progressBar1 = view.findViewById(R.id.progressBar1)
         progressBar1.max = 100
         progressBar1.min = 0
-        val currentProgress1 = 50
+
         progressBar1.progress = currentProgress1
 
         progressBar2 = view.findViewById(R.id.progressBar2)
         progressBar2.max = 200
         progressBar2.min = 0
-        val currentProgress2 = 50
+
         progressBar2.progress = currentProgress2
 
         progressBar3 = view.findViewById(R.id.progressBar3)
         progressBar3.max = 50
         progressBar3.min = 0
-        val currentProgress3 = 50
+
         progressBar3.progress = currentProgress3
+
+        val coleccion = Firebase.firestore.collection("TotalDonations")
+
+
+        val queryTask = coleccion.get()
+        queryTask.addOnSuccessListener { result ->
+            // recorrer datos
+            Toast.makeText(
+                this.context,
+                "QUERY EXITOSO",
+                Toast.LENGTH_SHORT
+            ).show()
+            for (documentoActual in result) {
+                Log.d(
+                    "FIRESTORE", "${documentoActual.id}"
+                )
+                var aceite = documentoActual.get("Aceite")
+                var arroz = documentoActual.get("Arroz").toString().toInt()
+                progressBar1.progress = arroz
+                var garbanzo = documentoActual.get("Garbanzo").toString().toInt()
+                //progressBar2.progress = garbanzo
+                var papel = documentoActual.get("Papel higienico").toString().toInt()
+                progressBar2.progress = papel
+
+                var frijol = documentoActual.get("Frijol")
+                var canasta = documentoActual.get("Canasta basica")
+                var limpieza = documentoActual.get("Productos de Limpieza")
+                var azucar = documentoActual.get("Azucar").toString().toInt()
+                progressBar3.progress = azucar
+            }
+        }.addOnFailureListener{ error ->
+            Log.e("FIRESTORE", "error in query: $error")
+        }
 
 
         // Inflate the layout for this fragment

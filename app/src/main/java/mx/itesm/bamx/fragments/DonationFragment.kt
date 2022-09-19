@@ -2,18 +2,21 @@ package mx.itesm.bamx.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import supportClasses.DonationAdapter
 import mx.itesm.bamx.R
-
+import supportClasses.DonationAdapter
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -47,6 +50,22 @@ class DonationFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        val date = Date()
+        val localDate: LocalDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        val year = localDate.year
+        val month = localDate.monthValue
+        val day = localDate.dayOfMonth
+        //val a: LocalDate = LocalDate.getYear()
+        //val date:String = year.toString()
+        //val delim = "-"
+        Log.d("Year: ",year.toString())
+        Log.d("Month: ",month.toString())
+        Log.d("Day: ", day.toString())
+        //producto:
+
+        // Donation
+
     }
 
     override fun onCreateView(
@@ -95,27 +114,22 @@ class DonationFragment : Fragment() {
 
             precios = ArrayList()
             for (documentoActual in result) {
-                Log.d(
+                /*Log.d(
                     "FIRESTORE", "${documentoActual.id}"
-                )
+                )*/
                 var precio = documentoActual.get("precio")
                 precios.add(precio.toString())
                 nombres.add(documentoActual.get("producto").toString())
+                /*
                 Log.d("PRECIOS: ", precios.toString())
                 Log.d("NOMBRES: ", nombres.toString())
-
-
-
-
-
 
                 Log.d(
                     "FIRESTORE", "${documentoActual.get("precio")}"
                 )
                 Log.d(
                     "FIRESTORE",   "${documentoActual.getString("producto")}"
-                )
-
+                )*/
                 // datos -> gui
                 // creador adaptador
                 val adapter = DonationAdapter(nombres, precios)
@@ -126,6 +140,7 @@ class DonationFragment : Fragment() {
         }.addOnFailureListener{ error ->
             Log.e("FIRESTORE", "error in query: $error")
         }
+
 
         return view
     }

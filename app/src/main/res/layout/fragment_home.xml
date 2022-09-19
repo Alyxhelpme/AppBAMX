@@ -38,12 +38,13 @@
             android:id="@+id/goalsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="324dp"
+            android:layout_marginTop="328dp"
             android:fontFamily="@font/interblack"
             android:text="Metas mensuales"
             android:textColor="#BE0035"
             android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.304"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,13 +52,14 @@
             android:id="@+id/goal1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="39dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/inter"
             android:text="100Kg de arroz"
             android:textColor="#3F000A"
             android:textSize="20dp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.165"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/goalsTextView" />
 
@@ -67,7 +69,6 @@
             android:layout_width="334dp"
             android:layout_height="15dp"
 
-            android:layout_marginStart="44dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_progressbar"
             android:backgroundTint="#3F000A"
@@ -82,6 +83,7 @@
             android:progressDrawable="@drawable/custom_progressbar"
             android:progressTint="#930029"
             android:progressTintMode="src_in"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/goal1" />
 
@@ -89,13 +91,14 @@
             android:id="@+id/goal2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/inter"
             android:text="200 rollos de papel higiénico"
             android:textColor="#3F000A"
             android:textSize="20dp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.325"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progressBar1" />
 
@@ -105,7 +108,6 @@
             android:layout_width="334dp"
             android:layout_height="15dp"
 
-            android:layout_marginStart="44dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_progressbar"
             android:backgroundTint="#3F000A"
@@ -120,6 +122,7 @@
             android:progressDrawable="@drawable/custom_progressbar"
             android:progressTint="#930029"
             android:progressTintMode="src_in"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/goal2" />
 
@@ -127,13 +130,14 @@
             android:id="@+id/goal3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/inter"
             android:text="50 garrafones"
             android:textColor="#3F000A"
             android:textSize="20dp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.158"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
 
@@ -143,7 +147,6 @@
             android:layout_width="334dp"
             android:layout_height="15dp"
 
-            android:layout_marginStart="44dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_progressbar"
             android:backgroundTint="#3F000A"
@@ -158,6 +161,7 @@
             android:progressDrawable="@drawable/custom_progressbar"
             android:progressTint="#930029"
             android:progressTintMode="src_in"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/goal3" />
 
