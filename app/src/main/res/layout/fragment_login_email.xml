@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout4"
+    android:layout_width="350dp"
+    android:layout_height="400dp"
+    android:background="@color/mainB"
+    tools:context=".fragments.loginEmailFragment">
+
+    <TextView
+        android:id="@+id/noAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="58dp"
+        android:text="¿NO TIENES CUENTA?"
+        android:textColor="#40000B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <EditText
+        android:id="@+id/passwordLoginInput"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/custom_button_1"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:hint="CONTRASEÑA"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="16dp"
+        android:textColor="#40000B"
+        android:textColorHint="#5E5455"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailLoginInput" />
+
+    <TextView
+        android:id="@+id/greetingMessage3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="26dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Iniciar sesión"
+        android:textColor="#BE0035"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/emailLoginInput"
+        app:layout_constraintEnd_toEndOf="@+id/emailLoginInput"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="210dp"
+        android:layout_height="0dp"
+
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/custom_button_2"
+        android:text="Iniciar sesión"
+        android:textColor="#40000B"
+        app:layout_constraintBottom_toTopOf="@+id/noAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLoginInput"
+        app:strokeColor="#EA2727"
+        app:strokeWidth="3dp" />
+
+    <EditText
+        android:id="@+id/emailLoginInput"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="29dp"
+        android:background="@drawable/custom_button_1"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:hint="CORREO ELECTRÓNICO"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="16dp"
+        android:textColor="#40000B"
+        android:textColorHint="#5E5455"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/passwordLoginInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/greetingMessage3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,9 +17,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.firestore
+import mx.itesm.bamx.MainActivity
 import mx.itesm.bamx.R
 import mx.itesm.bamx.SearchCenterActivity
 import java.util.jar.Manifest
@@ -30,6 +32,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
     private lateinit var map : GoogleMap
     private lateinit var collection : CollectionReference
     private lateinit var searchButton : Button
+    private lateinit var logOutButton : Button
+    private lateinit var firebaseAuth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +47,12 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
         val view = inflater.inflate(R.layout.fragment_map, container, false)
         searchButton = view.findViewById(R.id.searchButton)
         searchButton.setOnClickListener{goSearch()}
+        logOutButton = view.findViewById(R.id.logout)
+        logOutButton.setOnClickListener {
+            firebaseAuth = FirebaseAuth.getInstance()
+            firebaseAuth.signOut()
+            startActivity(Intent(this.context,MainActivity::class.java))
+        }
         return view
     }
 

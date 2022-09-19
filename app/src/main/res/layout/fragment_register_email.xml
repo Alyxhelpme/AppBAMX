@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="350dp"
+    android:layout_height="400dp"
+    android:background="@color/mainB"
+    tools:context=".fragments.registerEmailFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/greetingMessage2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginBottom="26dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Crear cuenta"
+        android:textColor="#BE0035"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/emailTextInput"
+        app:layout_constraintStart_toStartOf="@+id/emailTextInput"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/passwordTextInput"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_button_1"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:hint="CONTRASEÑA"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="16dp"
+        android:textColor="#40000B"
+        android:textColorHint="#5E5455"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/passwordConfTextInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailTextInput" />
+
+    <TextView
+        android:id="@+id/alreadyRegistered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="¿YA ESTÁS REGISTRADO?"
+        android:textColor="#40000B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/registerButton"
+        app:layout_constraintTop_toBottomOf="@+id/registerButton" />
+
+    <EditText
+        android:id="@+id/passwordConfTextInput"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/custom_button_1"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:hint="CONFIRMAR CONTRASEÑA"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="16dp"
+        android:textColor="#40000B"
+        android:textColorHint="#5E5455"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordTextInput" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="210dp"
+        android:layout_height="0dp"
+
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/custom_button_2"
+        android:text="REGISTRARSE"
+        android:textColor="#40000B"
+        app:layout_constraintBottom_toTopOf="@+id/alreadyRegistered"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordConfTextInput"
+        app:strokeColor="#EA2727"
+        app:strokeWidth="3dp" />
+
+    <EditText
+        android:id="@+id/emailTextInput"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="29dp"
+        android:background="@drawable/custom_button_1"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:hint="CORREO ELECTRÓNICO"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="16dp"
+        android:textColor="#40000B"
+        android:textColorHint="#5E5455"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/passwordTextInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/greetingMessage2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
