@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import mx.itesm.bamx.R
 
-class DonationAdapter(var productos : ArrayList<String>, var prices : ArrayList<String>) :
+class DonationAdapter(var productos : ArrayList<String>,
+                      var prices : ArrayList<String>,
+                      var listener : View.OnClickListener) :
     RecyclerView.Adapter<DonationAdapter.DonationViewHolder>(){
 
     // internal class that will work as view holder (like a binding stuff)
@@ -34,6 +36,8 @@ class DonationAdapter(var productos : ArrayList<String>, var prices : ArrayList<
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DonationViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
+
+        view.setOnClickListener(listener)
 
         return DonationViewHolder(view)
 

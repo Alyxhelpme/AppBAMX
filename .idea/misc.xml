@@ -14,6 +14,8 @@
         <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/fragment_rewards_custom_tvheader.xml" value="0.2015" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/root_tab_custom.xml" value="0.232" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_main.xml" value="0.203326416015625" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_pago.xml" value="0.165" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_paypal.xml" value="0.10677083333333333" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_root_tab.xml" value="0.25" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_donation.xml" value="0.25" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_donation_lv.xml" value="0.1" />
