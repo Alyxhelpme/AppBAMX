@@ -1,10 +1,12 @@
 package mx.itesm.bamx.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +19,11 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
 import kotlin.collections.ArrayList
+import mx.itesm.bamx.PagoActivity
+import supportClasses.DonationAdapter
+import mx.itesm.bamx.R
+import mx.itesm.bamx.SearchCenterActivity
+import mx.itesm.bamx.carrito
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,7 +36,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [DonationFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DonationFragment : Fragment() {
+class DonationFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -38,6 +45,8 @@ class DonationFragment : Fragment() {
 
     lateinit var nombres : ArrayList<String>
     lateinit var precios : ArrayList<String>
+
+    lateinit var pagarButton : Button
 
     private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
     //private val prices= arrayOf("$70", "$120", "$80", "$30")
@@ -68,13 +77,26 @@ class DonationFragment : Fragment() {
 
     }
 
+    override fun onClick(item_list: View) {
+
+        val position = recyclerView.getChildLayoutPosition(item_list)
+        Toast.makeText(activity,
+                        precios[position],
+                        Toast.LENGTH_SHORT).show()
+
+        carrito = precios[position].toInt()
+        Log.d("CARRITO", carrito.toString())
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-
         val view: View = inflater.inflate(R.layout.fragment_donation, container, false)
+        pagarButton = view.findViewById(R.id.button)
+        pagarButton.setOnClickListener { (goPay()) }
 
         // gui
         recyclerView = view.findViewById(R.id.itemsRV) // this may not work
@@ -132,7 +154,7 @@ class DonationFragment : Fragment() {
                 )*/
                 // datos -> gui
                 // creador adaptador
-                val adapter = DonationAdapter(nombres, precios)
+                val adapter = DonationAdapter(nombres, precios, this)
 
                 recyclerView.adapter = adapter
 
@@ -164,6 +186,11 @@ class DonationFragment : Fragment() {
                 }
             }
 
+    }
+
+    private fun goPay() {
+        val intent = Intent(requireActivity(), PagoActivity::class.java)
+        startActivity(intent)
     }
 
 }
