@@ -20,8 +20,6 @@ import java.time.ZoneId
 import java.util.*
 import kotlin.collections.ArrayList
 import mx.itesm.bamx.PagoActivity
-import supportClasses.DonationAdapter
-import mx.itesm.bamx.R
 import mx.itesm.bamx.SearchCenterActivity
 import mx.itesm.bamx.carrito
 
