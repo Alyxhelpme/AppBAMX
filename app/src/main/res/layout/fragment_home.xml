@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/inter"
-            android:text="50 garrafones"
+            android:text="50Kg de azucar"
             android:textColor="#3F000A"
             android:textSize="20dp"
             android:textStyle="bold"
