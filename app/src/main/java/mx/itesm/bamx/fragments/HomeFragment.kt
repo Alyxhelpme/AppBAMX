@@ -98,12 +98,12 @@ class HomeFragment : Fragment() {
                 progressBar1.progress = arroz
                 var garbanzo = documentoActual.get("Garbanzo").toString().toInt()
                 //progressBar2.progress = garbanzo
-                var papel = documentoActual.get("Papel higienico").toString().toInt()
+                var papel = documentoActual.get("PapelHigienico").toString().toInt()
                 progressBar2.progress = papel
 
                 var frijol = documentoActual.get("Frijol")
-                var canasta = documentoActual.get("Canasta basica")
-                var limpieza = documentoActual.get("Productos de Limpieza")
+                var canasta = documentoActual.get("CanastaBasica")
+                var limpieza = documentoActual.get("ProductosDeLimpieza")
                 var azucar = documentoActual.get("Azucar").toString().toInt()
                 progressBar3.progress = azucar
             }
