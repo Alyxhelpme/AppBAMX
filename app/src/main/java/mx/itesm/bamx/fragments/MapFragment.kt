@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -23,8 +22,8 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.firestore
 import mx.itesm.bamx.MainActivity
 import mx.itesm.bamx.R
+import mx.itesm.bamx.RegisterAssociateActivity
 import mx.itesm.bamx.SearchCenterActivity
-import java.util.jar.Manifest
 
 
 class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener {
@@ -33,11 +32,13 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
     private lateinit var collection : CollectionReference
     private lateinit var searchButton : Button
     private lateinit var logOutButton : Button
+    private lateinit var registerAssociateButton : Button
     private lateinit var firebaseAuth : FirebaseAuth
+    lateinit var centers : Array<LatLng>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        collection = Firebase.firestore.collection("centers")
     }
 
     override fun onCreateView(
@@ -45,6 +46,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_map, container, false)
+        centers = emptyArray()
         searchButton = view.findViewById(R.id.searchButton)
         searchButton.setOnClickListener{goSearch()}
         logOutButton = view.findViewById(R.id.logout)
@@ -52,6 +54,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
             firebaseAuth = FirebaseAuth.getInstance()
             firebaseAuth.signOut()
             startActivity(Intent(this.context,MainActivity::class.java))
+        }
+        registerAssociateButton = view.findViewById(R.id.registerAssociateButton)
+        registerAssociateButton.setOnClickListener{
+            startActivity(Intent(this.context, RegisterAssociateActivity::class.java))
         }
         return view
     }
@@ -62,7 +68,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
 
     // ======================================= MAP METHODS =============================================
     private fun createFragment(){
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment = childFragmentManager.findFragmentById(R.id.mapAddress) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
@@ -80,7 +86,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
         fetchCenters()
     }
 
-    private fun fetchCenters(){
+    fun fetchCenters(){
+        collection = Firebase.firestore.collection("centers")
         val requestCenters = collection.get()
         requestCenters.addOnSuccessListener {
                 result ->
@@ -90,6 +97,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
                 var coordinates : LatLng
                 if(lat != null && lng != null){
                     coordinates = LatLng(lat, lng)
+                    centers.plus(coordinates)
                     map.addMarker(MarkerOptions().position(coordinates).title("Center"))
                 }
             }

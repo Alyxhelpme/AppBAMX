@@ -104,11 +104,6 @@ class DonationFragment : Fragment() {
                 Log.d("PRECIOS: ", precios.toString())
                 Log.d("NOMBRES: ", nombres.toString())
 
-
-
-
-
-
                 Log.d(
                     "FIRESTORE", "${documentoActual.get("precio")}"
                 )
