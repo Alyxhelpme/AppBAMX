@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import java.lang.Exception
 
+var carrito = 0
 
 class MainActivity : AppCompatActivity() {
 
