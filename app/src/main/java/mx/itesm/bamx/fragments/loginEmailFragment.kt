@@ -87,6 +87,15 @@ class loginEmailFragment : Fragment() {
         return view
     }
 
+    fun login(string1 : String, string2 : String) : Boolean{
+        if (string1 != "" && string2 != ""){
+            var authTask = Firebase.auth.signInWithEmailAndPassword(string1, string2)
+        }
+
+        return !(string1.isEmpty() || string2.isBlank())
+
+    }
+
     companion object {
         private const val TAG_FRAGMENTO = "fragmentito"
         /**
