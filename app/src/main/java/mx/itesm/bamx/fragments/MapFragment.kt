@@ -55,7 +55,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
             firebaseAuth.signOut()
             startActivity(Intent(this.context,MainActivity::class.java))
         }
-        registerAssociateButton = view.findViewById(R.id.registerAssociateButton)
+        registerAssociateButton = view.findViewById(R.id.pay)
         registerAssociateButton.setOnClickListener{
             startActivity(Intent(this.context, RegisterAssociateActivity::class.java))
         }
