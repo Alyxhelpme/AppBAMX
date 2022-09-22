@@ -7,6 +7,10 @@ plugins {
 
 android {
     compileSdk 32
+    testOptions{
+        unitTests.includeAndroidResources = true
+        unitTests.returnDefaultValues = true
+    }
 
     defaultConfig {
         applicationId "mx.itesm.bamx"
@@ -39,7 +43,7 @@ android {
 dependencies {
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:30.3.1')
-    implementation 'com.google.android.gms:play-services-auth:20.2.0'
+    implementation 'com.google.android.gms:play-services-auth:20.3.0'
 
 
     // TODO: Add the dependencies for Firebase products you want to use
@@ -49,16 +53,18 @@ dependencies {
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
     implementation platform('com.google.firebase:firebase-bom:30.3.2')
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.3.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.3.1'
     implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
-    implementation 'com.google.firebase:firebase-firestore:24.2.2'
+    implementation 'com.google.firebase:firebase-firestore:24.3.1'
+    implementation 'com.google.android.libraries.places:places:2.6.0'
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
 
     // Required -- JUnit 4 framework
-    testImplementation "junit:junit:4.12.0"
+    testImplementation 'junit:junit:4.13.2' 
     // Optional -- Robolectric environment
     testImplementation "androidx.test:core-ktx:1.4.0"
     testImplementation "androidx:test:core:1.4.0"
@@ -70,9 +76,10 @@ dependencies {
     testImplementation "io.mockk:mockk:1.12.8"
 
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
-
     implementation "androidx.recyclerview:recyclerview:1.2.1"
+
     // For control over item selection of both touch and mouse driven selection
+
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
 
     testImplementation 'com.google.truth:truth:1.1.2'

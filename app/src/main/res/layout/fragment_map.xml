@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainB"
-    android:backgroundTint="#FFFFFF"
+    android:backgroundTint="@color/mainB"
     android:foregroundTint="#40000B"
     app:circularflow_radiusInDP="5dp"
     tools:context=".fragments.MapFragment">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/map"
+        android:id="@+id/mapAddress"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="367dp"
         android:layout_height="400dp"
@@ -34,13 +34,13 @@
         android:paddingRight="5dp"
         android:text="@string/searchText"
         android:textColor="#40000B"
-        app:layout_constraintBottom_toTopOf="@+id/map"
+        app:layout_constraintBottom_toTopOf="@+id/mapAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/registerAssociateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -62,8 +62,10 @@
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="56dp"
         android:text="logout"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="145dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
