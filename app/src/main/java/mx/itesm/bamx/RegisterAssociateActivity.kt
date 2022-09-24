@@ -19,9 +19,7 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
-import java.io.File
-import java.util.jar.Manifest
-import javax.xml.parsers.DocumentBuilderFactory
+
 
 class RegisterAssociateActivity : AppCompatActivity() , OnMapReadyCallback {
 
@@ -42,8 +40,9 @@ class RegisterAssociateActivity : AppCompatActivity() , OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_associate)
-        initiatePlaces()
-
+        //initiatePlaces()
+        //val mapFragment = supportFragmentManager.findFragmentById(R.id.mapAddress) as SupportMapFragment
+        //mapFragment.getMapAsync(this)
 
     }
 
@@ -66,8 +65,7 @@ class RegisterAssociateActivity : AppCompatActivity() , OnMapReadyCallback {
             }
         })
 
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.mapAddress) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+
     }
 
     override fun onMapReady(p0: GoogleMap) {

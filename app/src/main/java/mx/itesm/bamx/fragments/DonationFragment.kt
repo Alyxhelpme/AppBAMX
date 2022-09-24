@@ -20,7 +20,6 @@ import java.time.ZoneId
 import java.util.*
 import kotlin.collections.ArrayList
 import mx.itesm.bamx.PagoActivity
-import mx.itesm.bamx.SearchCenterActivity
 import mx.itesm.bamx.carrito
 
 
@@ -93,7 +92,7 @@ class DonationFragment : Fragment(), View.OnClickListener {
     ): View? {
 
         val view: View = inflater.inflate(R.layout.fragment_donation, container, false)
-        pagarButton = view.findViewById(R.id.pay)
+        pagarButton = view.findViewById(R.id.becomeAssociateButton)
         pagarButton.setOnClickListener { (goPay()) }
 
         // gui

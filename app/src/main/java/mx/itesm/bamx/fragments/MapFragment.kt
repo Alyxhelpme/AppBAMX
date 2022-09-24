@@ -49,16 +49,16 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
         centers = emptyArray()
         searchButton = view.findViewById(R.id.searchButton)
         searchButton.setOnClickListener{goSearch()}
+        registerAssociateButton = view.findViewById(R.id.becomeAssociateButton)
+        registerAssociateButton.setOnClickListener{becomeAssociate()}
+
         logOutButton = view.findViewById(R.id.logout)
         logOutButton.setOnClickListener {
             firebaseAuth = FirebaseAuth.getInstance()
             firebaseAuth.signOut()
             startActivity(Intent(this.context,MainActivity::class.java))
         }
-        registerAssociateButton = view.findViewById(R.id.pay)
-        registerAssociateButton.setOnClickListener{
-            startActivity(Intent(this.context, RegisterAssociateActivity::class.java))
-        }
+
         return view
     }
 
@@ -114,6 +114,11 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
 
     private fun goSearch(){
         val intent = Intent(requireActivity(), SearchCenterActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun becomeAssociate(){
+        val intent = Intent(requireActivity(), RegisterAssociateActivity::class.java)
         startActivity(intent)
     }
 }
