@@ -34,16 +34,16 @@ class RegisterAssociateActivity : AppCompatActivity() , OnMapReadyCallback {
     private lateinit var phoneNumberField : EditText
 
 
-    private val geocodingAPI = "https://maps.googleapis.com/maps/api/geocode/json?key=${getString(R.string.google_maps_api_key)}&address="
+    private lateinit var geocodingAPI : String
     private lateinit var map : GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_associate)
-        //initiatePlaces()
-        //val mapFragment = supportFragmentManager.findFragmentById(R.id.mapAddress) as SupportMapFragment
-        //mapFragment.getMapAsync(this)
-
+        geocodingAPI = "https://maps.googleapis.com/maps/api/geocode/json?key=${getString(R.string.google_maps_api_key)}&address="
+        initiatePlaces()
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.mapAddress) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
 //region Map Methods
