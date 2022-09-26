@@ -16,6 +16,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import mx.itesm.bamx.EmailLogin
 import mx.itesm.bamx.R
+import java.lang.Exception
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,11 +77,13 @@ class registerEmailFragment : Fragment() {
 
         registerButton.setOnClickListener{
 
-            if (email.text.toString() != null && password.text.toString() == passwordConfirmation.text.toString()){
+
+            if (email.text.toString() != "" && password.text.toString() != "" && passwordConfirmation.text.toString() != "" &&
+                password.text.toString() == passwordConfirmation.text.toString()){
+
                 var authTask = Firebase.auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
 
                 authTask.addOnCompleteListener { result ->
-                    Toast.makeText(this.context, "Boton clickeado", Toast.LENGTH_LONG).show()
                     if (result.isSuccessful){
                         Toast.makeText(this.context, "Cuenta creada", Toast.LENGTH_SHORT).show()
                         activity?.supportFragmentManager?.beginTransaction()?.apply {
@@ -91,15 +94,23 @@ class registerEmailFragment : Fragment() {
                     } else {
                         //DO SOMETHING ELSE
                         Log.wtf("FIREBASE", "ERROR: ${result.exception?.message}")
+                        if (result.exception?.message.toString() == "The email address is badly formatted."){
+                            Toast.makeText(this.context, "Introduce un correo electronico valido", Toast.LENGTH_LONG).show()
+                        } else if (result.exception?.message.toString() == "The given password is invalid. [ Password should be at least 6 characters ]"){
+                            Toast.makeText(this.context, "La contraseña es demasiado corta. Debe contener al menos 6 caracteres.", Toast.LENGTH_LONG).show()
+                        }
+
                     }
                 }
             } else {
-                Toast.makeText(this.context, "Intenta de nuevo con datos validos", Toast.LENGTH_LONG).show()
+                Toast.makeText(this.context, "Los campos llenados no son validos", Toast.LENGTH_LONG).show()
                 email.text = null
                 password.text = null
                 passwordConfirmation.text = null
 
             }
+
+
 
         }
 
