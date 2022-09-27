@@ -5,6 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -19,6 +25,8 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
+import org.json.JSONObject
+
 
 
 class RegisterAssociateActivity : AppCompatActivity() , OnMapReadyCallback {
@@ -36,11 +44,13 @@ class RegisterAssociateActivity : AppCompatActivity() , OnMapReadyCallback {
 
     private lateinit var geocodingAPI : String
     private lateinit var map : GoogleMap
+    private lateinit var geocodingQueue : RequestQueue
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_associate)
         geocodingAPI = "https://maps.googleapis.com/maps/api/geocode/json?key=${getString(R.string.google_maps_api_key)}&address="
+        geocodingQueue = Volley.newRequestQueue(this)
         initiatePlaces()
         val mapFragment = supportFragmentManager.findFragmentById(R.id.mapAddress) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -59,6 +69,25 @@ class RegisterAssociateActivity : AppCompatActivity() , OnMapReadyCallback {
             override fun onPlaceSelected(place: Place) {
                 Log.i("PLACES", "Place: ${place.name}, ${place.address}")
                 val formattedAddress = place.address.replace(" ", "+")
+                val geocodingURL = geocodingAPI + formattedAddress
+
+                var request = JsonObjectRequest(geocodingURL,
+                    { response ->
+                        val geo = response.getJSONArray("results").getJSONObject(0).getJSONObject("geometry")
+                        val lat = geo.getJSONObject("location").getDouble("lat")
+                        val lng = geo.getJSONObject("location").getDouble("lng")
+                        val coordinates = LatLng(lat, lng)
+                        map.addMarker(MarkerOptions().position(coordinates))
+                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 14f))
+
+                        //Log.wtf("Result", response.toString())
+
+                    },
+                    {
+                        Log.wtf("GEOCODING", it.toString())
+                    }
+                )
+                geocodingQueue.add(request)
             }
             override fun onError(status: Status) {
                 Log.i("PLACES", "An error occurred: $status")

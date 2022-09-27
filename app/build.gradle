@@ -62,6 +62,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.3.1'
     implementation 'com.google.android.libraries.places:places:2.6.0'
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
+    implementation 'com.android.volley:volley:1.2.1'
 
     // Required -- JUnit 4 framework
     testImplementation 'junit:junit:4.13.2' 
