@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.firestore.ktx.firestore
@@ -32,6 +33,7 @@ class HomeFragment : Fragment() {
     lateinit var progressBar1 : ProgressBar
     lateinit var progressBar2 : ProgressBar
     lateinit var progressBar3: ProgressBar
+    private lateinit var twitterWebView : WebView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,6 +110,21 @@ class HomeFragment : Fragment() {
                 progressBar3.progress = azucar
             }
         }.addOnFailureListener{ error ->
+            Log.e("FIRESTORE", "error in query: $error")
+        }
+
+        val twitterCollection = Firebase.firestore.collection("newsTweet")
+        val twitterTask = twitterCollection.get()
+
+        twitterWebView = view.findViewById(R.id.webView)
+        twitterWebView.settings.javaScriptEnabled = true
+
+        twitterTask.addOnSuccessListener { result ->
+            for (document in result){
+                var tweetUrl = document.get("twitterUrl")
+                twitterWebView.loadUrl(tweetUrl.toString())
+            }
+        }.addOnFailureListener { error ->
             Log.e("FIRESTORE", "error in query: $error")
         }
 
