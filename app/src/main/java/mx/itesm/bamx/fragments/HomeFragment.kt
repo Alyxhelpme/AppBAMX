@@ -121,8 +121,9 @@ class HomeFragment : Fragment() {
 
         twitterTask.addOnSuccessListener { result ->
             for (document in result){
-                var tweetUrl = document.get("twitterUrl")
-                twitterWebView.loadUrl(tweetUrl.toString())
+                var tweetUrl = document.get("twitterUrl.html")
+                Log.e("FIRESTORE", "Encontre el URL: $tweetUrl")
+                twitterWebView.loadData("<html><body>$tweetUrl</body></html>", "text/HTML", "UTF-8")
             }
         }.addOnFailureListener { error ->
             Log.e("FIRESTORE", "error in query: $error")
