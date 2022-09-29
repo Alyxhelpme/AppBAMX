@@ -30,7 +30,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
 
     private lateinit var map : GoogleMap
     private lateinit var collection : CollectionReference
-    private lateinit var searchButton : Button
     private lateinit var logOutButton : Button
     private lateinit var registerAssociateButton : Button
     private lateinit var firebaseAuth : FirebaseAuth
@@ -47,18 +46,16 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
     ): View? {
         val view = inflater.inflate(R.layout.fragment_map, container, false)
         centers = emptyArray()
-        searchButton = view.findViewById(R.id.searchButton)
-        searchButton.setOnClickListener{goSearch()}
+        registerAssociateButton = view.findViewById(R.id.becomeAssociateButton)
+        registerAssociateButton.setOnClickListener{becomeAssociate()}
+
         logOutButton = view.findViewById(R.id.logout)
         logOutButton.setOnClickListener {
             firebaseAuth = FirebaseAuth.getInstance()
             firebaseAuth.signOut()
             startActivity(Intent(this.context,MainActivity::class.java))
         }
-        registerAssociateButton = view.findViewById(R.id.pay)
-        registerAssociateButton.setOnClickListener{
-            startActivity(Intent(this.context, RegisterAssociateActivity::class.java))
-        }
+
         return view
     }
 
@@ -66,7 +63,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
         createFragment()
     }
 
-    // ======================================= MAP METHODS =============================================
+//region Map
     private fun createFragment(){
         val mapFragment = childFragmentManager.findFragmentById(R.id.mapAddress) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -81,8 +78,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
             val permisos = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
             requestPermissions(permisos, 0)
         }
-        val cameraPosition = LatLng(20.737122,-103.454266)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraPosition, 15f))
+        val cameraPosition = LatLng(24.0220143,-101.3152273)
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraPosition, 4f))
         fetchCenters()
     }
 
@@ -111,9 +108,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
         map.animateCamera(CameraUpdateFactory.zoomIn())
         return false
     }
+//endregion
 
-    private fun goSearch(){
-        val intent = Intent(requireActivity(), SearchCenterActivity::class.java)
+    private fun becomeAssociate(){
+        val intent = Intent(requireActivity(), RegisterAssociateActivity::class.java)
         startActivity(intent)
     }
 }
