@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var googleButton : Button
     lateinit var emailButton : Button
 
+
     private companion object{
         private const val RC_SIGN_IN = 100
         private const val TAG = "GOOGLE_SIGN_IN_TAG"
@@ -99,6 +100,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, RootTabActivity::class.java)
         startActivity(intent)
     }
+
 
     override fun onStart() {
         super.onStart()

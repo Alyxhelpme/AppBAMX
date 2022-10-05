@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,13 +38,16 @@ class DonationFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var quantity: Int = 0
+
 
     lateinit var recyclerView : RecyclerView
 
     lateinit var nombres : ArrayList<String>
     lateinit var precios : ArrayList<String>
-
     lateinit var pagarButton : Button
+
+    lateinit var cantidad : ArrayList<Int>
 
     private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
     //private val prices= arrayOf("$70", "$120", "$80", "$30")
@@ -72,17 +76,18 @@ class DonationFragment : Fragment(), View.OnClickListener {
 
         // Donation
 
+
     }
+
 
     override fun onClick(item_list: View) {
 
         val position = recyclerView.getChildLayoutPosition(item_list)
-        Toast.makeText(activity,
-                        precios[position],
-                        Toast.LENGTH_SHORT).show()
-
-        carrito = precios[position].toInt()
+        Toast.makeText(activity, "${(precios[position].toInt()*cantidad[position])}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(activity, "${(total)}", Toast.LENGTH_SHORT).show()
+        //carrito = totalPrice()
         Log.d("CARRITO", carrito.toString())
+        recyclerView.adapter
 
     }
 
@@ -92,7 +97,7 @@ class DonationFragment : Fragment(), View.OnClickListener {
     ): View? {
 
         val view: View = inflater.inflate(R.layout.fragment_donation, container, false)
-        pagarButton = view.findViewById(R.id.becomeAssociateButton)
+
         pagarButton.setOnClickListener { (goPay()) }
 
         // gui
@@ -116,7 +121,7 @@ class DonationFragment : Fragment(), View.OnClickListener {
         //nombres.add(items[1])
         //nombres.add(items[2])
         //nombres.add(items[3])
-
+        cantidad = ArrayList()
         precios = ArrayList()
         // query to solicite data and obtain information
         val coleccion = Firebase.firestore.collection("ProductList")
@@ -139,19 +144,8 @@ class DonationFragment : Fragment(), View.OnClickListener {
                 var precio = documentoActual.get("precio")
                 precios.add(precio.toString())
                 nombres.add(documentoActual.get("producto").toString())
-                /*
-                Log.d("PRECIOS: ", precios.toString())
-                Log.d("NOMBRES: ", nombres.toString())
-
-                Log.d(
-                    "FIRESTORE", "${documentoActual.get("precio")}"
-                )
-                Log.d(
-                    "FIRESTORE",   "${documentoActual.getString("producto")}"
-                )*/
-                // datos -> gui
-                // creador adaptador
-                val adapter = DonationAdapter(nombres, precios, this)
+                cantidad.add(0)
+                val adapter = DonationAdapter(nombres, precios, cantidad, this)
 
                 recyclerView.adapter = adapter
 
@@ -182,12 +176,21 @@ class DonationFragment : Fragment(), View.OnClickListener {
                     putString(ARG_PARAM2, param2)
                 }
             }
-
     }
 
     private fun goPay() {
+        carrito = totalPrice()
         val intent = Intent(requireActivity(), PagoActivity::class.java)
+
         startActivity(intent)
+    }
+
+    private fun totalPrice(): Int {
+        var total : Int = 0
+        for (item in 0 until cantidad.size){
+            total += precios[item].toInt() * cantidad[item]
+        }
+        return total
     }
 
 }

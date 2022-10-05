@@ -1,31 +1,43 @@
 package supportClasses
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.annotation.NonNull
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import mx.itesm.bamx.R
+import mx.itesm.bamx.carrito
+import mx.itesm.bamx.fragments.DonationFragment
+import kotlin.concurrent.fixedRateTimer
 
-class DonationAdapter(var productos : ArrayList<String>,
+class DonationAdapter( var productos : ArrayList<String>,
                       var prices : ArrayList<String>,
+                      var cantidad : ArrayList<Int>,
                       var listener : View.OnClickListener) :
-    RecyclerView.Adapter<DonationAdapter.DonationViewHolder>(){
+    RecyclerView.Adapter<DonationAdapter.DonationViewHolder>() {
 
     // internal class that will work as view holder (like a binding stuff)
 
     class DonationViewHolder(itemView: View) :
             RecyclerView.ViewHolder(itemView) {
-
+                var deleteButton = itemView.findViewById<Button>(R.id.deleteItem)
+                var addButton = itemView.findViewById<Button>(R.id.addItem)
                 var nombre : TextView
                 var price : TextView
+                var cantidades : TextView
                 var imagen : ImageView
 
                 init {
 
                     nombre = itemView.findViewById(R.id.idNombre)
                     price = itemView.findViewById(R.id.idPrice)
+                    cantidades= itemView.findViewById(R.id.idQuantity)
                     imagen = itemView.findViewById(R.id.idImagen)
 
                 }
@@ -39,6 +51,7 @@ class DonationAdapter(var productos : ArrayList<String>,
 
         view.setOnClickListener(listener)
 
+
         return DonationViewHolder(view)
 
     }
@@ -47,9 +60,23 @@ class DonationAdapter(var productos : ArrayList<String>,
     // de datos
     override fun onBindViewHolder(holder: DonationViewHolder, position: Int) {
 
+        var quantity : Int = 0
         holder.nombre.text = productos[position]
         holder.price.text = "$" + prices[position] + " MXN"
+        holder.addButton.setOnClickListener{
+            quantity += 1
+            cantidad[position] = quantity
+            holder.cantidades.text = (quantity.toString())
+        }
 
+        holder.deleteButton.setOnClickListener{
+            if (quantity > 0){
+
+                quantity -= 1
+                cantidad[position] = quantity
+                holder.cantidades.text = (quantity.toString())
+            }
+        }
     }
 
     // obtener total de elementos
@@ -57,10 +84,17 @@ class DonationAdapter(var productos : ArrayList<String>,
         return productos.size
     }
 
+
+
     fun getPrice(position: Int): Int {
 
         return prices[position].toInt()
-
     }
+
+    fun getProductCount(): Int{
+        return cantidad.size
+    }
+
+
 
 }
