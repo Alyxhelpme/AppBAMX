@@ -87,8 +87,9 @@ class DonationFragment : Fragment(), View.OnClickListener {
                         precios[position],
                         Toast.LENGTH_SHORT).show()
         */
-        Toast.makeText(activity, "${(cantidad[position]*precios[position].toInt())}", Toast.LENGTH_SHORT).show()
-        //Toast.makeText(activity, "${(total)}", Toast.LENGTH_SHORT).show()
+        var total = totalPrice()
+        //Toast.makeText(activity, "${(cantidad[position]*precios[position].toInt())}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity, "${(total)}", Toast.LENGTH_SHORT).show()
         carrito = precios[position].toInt()
         Log.d("CARRITO", carrito.toString())
         recyclerView.adapter
@@ -191,5 +192,12 @@ class DonationFragment : Fragment(), View.OnClickListener {
         startActivity(intent)
     }
 
+    private fun totalPrice(): Int {
+        var total : Int = 0
+        for (item in 0 until cantidad.size){
+            total += precios[item].toInt() * cantidad[item]
+        }
+        return total
+    }
 
 }
