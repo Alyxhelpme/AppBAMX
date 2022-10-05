@@ -16,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bamx"
         tools:targetApi="31">
+
+        <activity
+            android:name=".EmailLogin"
+            android:exported="false" />
         <activity
             android:name=".PagoActivity"
             android:exported="false" />
