@@ -121,7 +121,7 @@ class HomeFragment : Fragment() {
 
         twitterTask.addOnSuccessListener { result ->
             for (document in result){
-                var tweetUrl = document.get("twitterUrl.html")
+                var tweetUrl = document.get("twitterUrl")
                 Log.e("FIRESTORE", "Encontre el URL: $tweetUrl")
                 twitterWebView.loadData("<html><body>$tweetUrl</body></html>", "text/HTML", "UTF-8")
             }
