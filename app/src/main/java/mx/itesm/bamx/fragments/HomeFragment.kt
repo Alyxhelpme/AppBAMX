@@ -126,7 +126,7 @@ class HomeFragment : Fragment() {
                 var tweetUrl = document.get("twitterUrl")
                 Log.d("FIRESTORE", "Encontre el URL: $tweetUrl")
                 twitterWebView.loadData(tweetUrl.toString(), "text/HTML", "UTF-8")
-                twitterWebView.addJavascriptInterface(tweetUrl.toString(), "HTMLOUT")
+
             }
         }.addOnFailureListener { error ->
             Log.e("FIRESTORE", "error in query: $error")
