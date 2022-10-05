@@ -118,12 +118,15 @@ class HomeFragment : Fragment() {
 
         twitterWebView = view.findViewById(R.id.webView)
         twitterWebView.settings.javaScriptEnabled = true
+        twitterWebView.settings.domStorageEnabled = true
+
 
         twitterTask.addOnSuccessListener { result ->
             for (document in result){
-                var tweetUrl = document.get("twitterUrl.html")
-                Log.e("FIRESTORE", "Encontre el URL: $tweetUrl")
-                twitterWebView.loadData("<html><body>$tweetUrl</body></html>", "text/HTML", "UTF-8")
+                var tweetUrl = document.get("twitterUrl")
+                Log.d("FIRESTORE", "Encontre el URL: $tweetUrl")
+                twitterWebView.loadData(tweetUrl.toString(), "text/HTML", "UTF-8")
+                twitterWebView.addJavascriptInterface(tweetUrl.toString(), "HTMLOUT")
             }
         }.addOnFailureListener { error ->
             Log.e("FIRESTORE", "error in query: $error")
