@@ -24,27 +24,10 @@
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_rewards.xml" value="0.25" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/item_list.xml" value="0.33" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/test.xml" value="0.19427083333333334" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1805" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/drawable/custom_progressbar.xml" value="0.23" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/drawable/fragment_donation_product_container.xml" value="0.1325" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.23" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/drawable/ic_baseline_minimize_24.xml" value="0.23" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.23" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1325" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/activity_email_login.xml" value="0.171875" />
         <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/activity_pago.xml" value="0.171875" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/activity_root_tab.xml" value="0.25416666666666665" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/activity_search_center.xml" value="0.23854166666666668" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/activity_spei.xml" value="0.23854166666666668" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/fragment_donation.xml" value="0.40540540540540543" />
+        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/fragment_donation.xml" value="0.2" />
         <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/fragment_donation_lv.xml" value="0.128" />
         <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/fragment_login_email.xml" value="0.23854166666666668" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/fragment_map.xml" value="0.23854166666666668" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/fragment_register_email.xml" value="0.23854166666666668" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/fragment_rewards.xml" value="0.14010416666666667" />
-        <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/item_list.xml" value="0.4" />
         <entry key="..\:/Users/chess/Documents/TEC/Semestre5/AppBAMX/app/src/main/res/layout/activity_email_login.xml" value="0.3625" />
         <entry key="..\:/Users/chess/Documents/TEC/Semestre5/AppBAMX/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Users/chess/Documents/TEC/Semestre5/AppBAMX/app/src/main/res/layout/activity_root_tab.xml" value="0.2546875" />
