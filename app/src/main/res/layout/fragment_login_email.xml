@@ -33,6 +33,7 @@
         android:hint="CONTRASEÑA"
         android:inputType="textPersonName"
         android:paddingHorizontal="16dp"
+        android:password="true"
         android:textColor="#40000B"
         android:textColorHint="#5E5455"
         android:textSize="14sp"

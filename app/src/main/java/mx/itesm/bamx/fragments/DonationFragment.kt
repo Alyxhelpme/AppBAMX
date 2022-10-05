@@ -98,8 +98,6 @@ class DonationFragment : Fragment(), View.OnClickListener {
 
         val view: View = inflater.inflate(R.layout.fragment_donation, container, false)
 
-
-        pagarButton = view.findViewById(R.id.button)
         pagarButton.setOnClickListener { (goPay()) }
 
         // gui

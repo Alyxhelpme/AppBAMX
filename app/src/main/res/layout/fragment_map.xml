@@ -6,41 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainB"
-    android:backgroundTint="#FFFFFF"
+    android:backgroundTint="@color/mainB"
     android:foregroundTint="#40000B"
     app:circularflow_radiusInDP="5dp"
     tools:context=".fragments.MapFragment">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/map"
+        android:id="@+id/mapAddress"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="367dp"
-        android:layout_height="400dp"
-        android:layout_marginBottom="25dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
         tools:context=".fragments.MapFragment" />
 
     <Button
-        android:id="@+id/searchButton"
-        android:layout_width="260dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/custom_button_1"
-        android:drawableLeft="@drawable/search"
-        android:drawablePadding="-10dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:text="@string/searchText"
-        android:textColor="#40000B"
-        app:layout_constraintBottom_toTopOf="@+id/map"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button"
+        android:id="@+id/becomeAssociateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -62,8 +49,54 @@
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="56dp"
         android:text="logout"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="145dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"
+        android:text="TextView"
+        android:textColor="#3F000A"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="79dp"
+        android:text="TextView"
+        android:textColor="#3F000A"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logout" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="24dp"
+        android:text="TextView"
+        android:textColor="#3F000A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="24dp"
+        android:text="TextView"
+        android:textColor="#3F000A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/becomeAssociateButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

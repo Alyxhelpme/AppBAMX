@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var gsc : GoogleSignInClient
     private lateinit var gso : GoogleSignInOptions
-    private lateinit var googleButton : Button
-    private lateinit var emailButton : Button
+    lateinit var googleButton : Button
+    lateinit var emailButton : Button
 
 
     private companion object{
@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
 
         //Initialize Firebase auth
         firebaseAuth = FirebaseAuth.getInstance()
-        checkUser()
 
         emailButton.setOnClickListener{
             //Something
@@ -67,9 +66,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun checkUser(){
-
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

@@ -71,20 +71,54 @@ class loginEmailFragment : Fragment() {
         }
 
         loginButton.setOnClickListener {
-            var authTask = Firebase.auth.signInWithEmailAndPassword(emailLogin.text.toString(), passwordLogin.text.toString())
-            authTask.addOnCompleteListener { result ->
-                if (result.isSuccessful){
-                    Toast.makeText(this.context, "Iniciando sesion", Toast.LENGTH_SHORT).show()
-                    Log.d("FIREBASE", "DEBUG: ${result.exception?.message}")
-                    startActivity(Intent(this.context, RootTabActivity::class.java))
 
-                } else {
-                    Log.wtf("FIREBASE", "ERROR: ${result.exception?.message}")
+            if (emailLogin.text.toString() != "" && passwordLogin.text.toString() != "") {
+
+                var authTask = Firebase.auth.signInWithEmailAndPassword(
+                    emailLogin.text.toString(),
+                    passwordLogin.text.toString()
+                )
+                authTask.addOnCompleteListener { result ->
+                    if (result.isSuccessful) {
+                        Toast.makeText(this.context, "Iniciando sesion", Toast.LENGTH_SHORT).show()
+                        Log.d("FIREBASE", "DEBUG: ${result.exception?.message}")
+                        startActivity(Intent(this.context, RootTabActivity::class.java))
+
+                    } else {
+                        Log.wtf("FIREBASE", "ERROR: ${result.exception?.message}")
+                        if (result.exception?.message.toString() == "There is no user record corresponding to this identifier. The user may have been deleted.") {
+                            Toast.makeText(
+                                this.context,
+                                "El correo electronico proporcionado no esta registrado",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            passwordLogin.text = null
+                        } else if (result.exception?.message.toString() == "The password is invalid or the user does not have a password.") {
+                            Toast.makeText(this.context, "Contraseña incorrecta", Toast.LENGTH_LONG)
+                                .show()
+                            passwordLogin.text = null
+                        }
+                    }
                 }
+            } else {
+                Toast.makeText(
+                    this.context,
+                    "Faltan datos por llenar para el inicio de sesion",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
         return view
+    }
+
+    fun login(string1 : String, string2 : String) : Boolean{
+        if (string1 != "" && string2 != ""){
+            var authTask = Firebase.auth.signInWithEmailAndPassword(string1, string2)
+        }
+
+        return !(string1.isEmpty() || string2.isBlank())
+
     }
 
     companion object {

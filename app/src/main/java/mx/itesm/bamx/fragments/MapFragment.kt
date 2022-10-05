@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -23,21 +22,22 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.firestore
 import mx.itesm.bamx.MainActivity
 import mx.itesm.bamx.R
+import mx.itesm.bamx.RegisterAssociateActivity
 import mx.itesm.bamx.SearchCenterActivity
-import java.util.jar.Manifest
 
 
 class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener {
 
     private lateinit var map : GoogleMap
     private lateinit var collection : CollectionReference
-    private lateinit var searchButton : Button
     private lateinit var logOutButton : Button
+    private lateinit var registerAssociateButton : Button
     private lateinit var firebaseAuth : FirebaseAuth
+    lateinit var centers : Array<LatLng>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        collection = Firebase.firestore.collection("centers")
     }
 
     override fun onCreateView(
@@ -45,14 +45,17 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_map, container, false)
-        searchButton = view.findViewById(R.id.searchButton)
-        searchButton.setOnClickListener{goSearch()}
+        centers = emptyArray()
+        registerAssociateButton = view.findViewById(R.id.becomeAssociateButton)
+        registerAssociateButton.setOnClickListener{becomeAssociate()}
+
         logOutButton = view.findViewById(R.id.logout)
         logOutButton.setOnClickListener {
             firebaseAuth = FirebaseAuth.getInstance()
             firebaseAuth.signOut()
             startActivity(Intent(this.context,MainActivity::class.java))
         }
+
         return view
     }
 
@@ -60,9 +63,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
         createFragment()
     }
 
-    // ======================================= MAP METHODS =============================================
+//region Map
     private fun createFragment(){
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment = childFragmentManager.findFragmentById(R.id.mapAddress) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
@@ -75,12 +78,13 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
             val permisos = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
             requestPermissions(permisos, 0)
         }
-        val cameraPosition = LatLng(20.737122,-103.454266)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraPosition, 15f))
+        val cameraPosition = LatLng(24.0220143,-101.3152273)
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cameraPosition, 4f))
         fetchCenters()
     }
 
-    private fun fetchCenters(){
+    fun fetchCenters(){
+        collection = Firebase.firestore.collection("centers")
         val requestCenters = collection.get()
         requestCenters.addOnSuccessListener {
                 result ->
@@ -90,6 +94,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
                 var coordinates : LatLng
                 if(lat != null && lng != null){
                     coordinates = LatLng(lat, lng)
+                    centers.plus(coordinates)
                     map.addMarker(MarkerOptions().position(coordinates).title("Center"))
                 }
             }
@@ -103,9 +108,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
         map.animateCamera(CameraUpdateFactory.zoomIn())
         return false
     }
+//endregion
 
-    private fun goSearch(){
-        val intent = Intent(requireActivity(), SearchCenterActivity::class.java)
+    private fun becomeAssociate(){
+        val intent = Intent(requireActivity(), RegisterAssociateActivity::class.java)
         startActivity(intent)
     }
 }
