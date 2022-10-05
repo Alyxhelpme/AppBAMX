@@ -83,14 +83,9 @@ class DonationFragment : Fragment(), View.OnClickListener {
     override fun onClick(item_list: View) {
 
         val position = recyclerView.getChildLayoutPosition(item_list)
-        /*Toast.makeText(activity,
-                        precios[position],
-                        Toast.LENGTH_SHORT).show()
-        */
-        var total = totalPrice()
-        //Toast.makeText(activity, "${(cantidad[position]*precios[position].toInt())}", Toast.LENGTH_SHORT).show()
-        Toast.makeText(activity, "${(total)}", Toast.LENGTH_SHORT).show()
-        carrito = precios[position].toInt()
+        Toast.makeText(activity, "${(precios[position].toInt()*cantidad[position])}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(activity, "${(total)}", Toast.LENGTH_SHORT).show()
+        //carrito = totalPrice()
         Log.d("CARRITO", carrito.toString())
         recyclerView.adapter
 
@@ -185,10 +180,10 @@ class DonationFragment : Fragment(), View.OnClickListener {
             }
     }
 
-
-
     private fun goPay() {
+        carrito = totalPrice()
         val intent = Intent(requireActivity(), PagoActivity::class.java)
+
         startActivity(intent)
     }
 
