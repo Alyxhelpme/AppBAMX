@@ -53,6 +53,7 @@
         <entry key="app/src/main/res/drawable/fragment_donation_product_container.xml" value="0.1275" />
         <entry key="app/src/main/res/drawable/fragment_maps_custom_text_box.xml" value="0.1275" />
         <entry key="app/src/main/res/drawable/root_tab_custom.xml" value="0.1275" />
+        <entry key="app/src/main/res/layout/activity_email_login.xml" value="0.34193840579710144" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17119565217391305" />
         <entry key="app/src/main/res/layout/activity_pago.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register_associate.xml" value="0.17119565217391305" />

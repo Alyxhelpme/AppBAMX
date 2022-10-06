@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <script>
+    function replace(id, newContent){
+        document.getElementById(id).innerHTML = newContent;
+    }
+    </script>
+  </head>
+  <body>
+    <body style="background-color:#FCEEF5">
+    <div id="modifiable value">1</div>
+  </body>
     <div id="smart-button-container">
         <div style="text-align: center;">
           <div id="paypal-button-container"></div>
         </div>
       </div>
-    <script src="https://www.paypal.com/sdk/js?client-id=ATCOmJj1A9ymZZ3AkHL2yYjVv2HK7WlK122Eew4mpMF-9zR5JhiArL83HuciJn2byEiUtlSQoq3mFB0v&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=ATCOmJj1A9ymZZ3AkHL2yYjVv2HK7WlK122Eew4mpMF-9zR5JhiArL83HuciJn2byEiUtlSQoq3mFB0v&enable-funding=venmo&currency=MXN" data-sdk-integration-source="button-factory"></script>
     <script>
+    
       function initPayPalButton() {
         paypal.Buttons({
           style: {
@@ -19,7 +31,7 @@
     
           createOrder: function(data, actions) {
             return actions.order.create({
-              purchase_units: [{"amount":{"currency_code":"USD","value":1,"breakdown":{"item_total":{"currency_code":"USD","value":1}}},"items":[{"name":"item name","unit_amount":{"currency_code":"USD","value":1},"quantity":"1","category":"DONATION"}]}]
+              purchase_units: [{"amount":{"currency_code":"MXN","value":document.getElementById("modifiable value").innerHTML,"breakdown":{"item_total":{"currency_code":"MXN","value":document.getElementById("modifiable value").innerHTML}}},"items":[{"name":"item name","unit_amount":{"currency_code":"MXN","value":document.getElementById("modifiable value").innerHTML},"quantity":"1","category":"DONATION"}]}]
             });
           },
     

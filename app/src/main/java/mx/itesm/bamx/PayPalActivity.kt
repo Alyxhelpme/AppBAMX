@@ -1,9 +1,14 @@
 package mx.itesm.bamx
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.webkit.JavascriptInterface
 import android.webkit.WebView
+import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.get
 import com.paypal.checkout.PayPalCheckout
 import com.paypal.checkout.approve.OnApprove
@@ -33,6 +38,17 @@ class PayPalActivity : AppCompatActivity() {
         webview.settings.javaScriptEnabled = true
 
         webview.loadUrl("file:///android_asset/index.html")
+
+        webview.webViewClient = object : WebViewClient(){
+            override fun onLoadResource(view: WebView?, url: String?) {
+                super.onLoadResource(view, url)
+                webview.evaluateJavascript("replace('modifiable value','${carrito.toString()}')")    {}
+            }
+        }
+        //webview.loadUrl("javascript:replace('modifiable value','${carrito.toString()}');")
+
+
+
 //        val config = CheckoutConfig(
 //            application = application,
 //            clientId = "ATCOmJj1A9ymZZ3AkHL2yYjVv2HK7WlK122Eew4mpMF-9zR5JhiArL83HuciJn2byEiUtlSQoq3mFB0v",
