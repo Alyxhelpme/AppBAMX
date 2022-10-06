@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import mx.itesm.bamx.PayPalActivity
 import mx.itesm.bamx.R
 import supportClasses.DonationAdapter
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
 import kotlin.collections.ArrayList
-import mx.itesm.bamx.PagoActivity
 import mx.itesm.bamx.carrito
 
 
@@ -186,7 +186,7 @@ class DonationFragment : Fragment(), View.OnClickListener {
     }
 
     private fun goPay() {
-        val intent = Intent(requireActivity(), PagoActivity::class.java)
+        val intent = Intent(requireActivity(), PayPalActivity::class.java)
         startActivity(intent)
     }
 

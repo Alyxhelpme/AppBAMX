@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
     testOptions{
         unitTests.includeAndroidResources = true
         unitTests.returnDefaultValues = true
@@ -82,6 +82,10 @@ dependencies {
     // For control over item selection of both touch and mouse driven selection
 
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
+
+    //PayPal dependencies
+    implementation 'com.paypal.checkout:android-sdk:0.7.3'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
 
     testImplementation 'com.google.truth:truth:1.1.2'
     testImplementation 'org.junit.jupiter:junit-jupiter'
