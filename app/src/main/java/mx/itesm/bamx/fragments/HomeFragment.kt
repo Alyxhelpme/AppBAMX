@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import mx.itesm.bamx.R
@@ -113,17 +114,25 @@ class HomeFragment : Fragment() {
             Log.e("FIRESTORE", "error in query: $error")
         }
 
-        val twitterCollection = Firebase.firestore.collection("newsTweet")
-        val twitterTask = twitterCollection.get()
-
         twitterWebView = view.findViewById(R.id.webView)
         twitterWebView.settings.javaScriptEnabled = true
+        twitterWebView.settings.domStorageEnabled = true
+
+        val twitterCollection = Firebase.firestore.collection("newsTweet/")
+        val twitterTask = twitterCollection.get()
 
         twitterTask.addOnSuccessListener { result ->
             for (document in result){
-                var tweetUrl = document.get("twitterUrl")
-                Log.e("FIRESTORE", "Encontre el URL: $tweetUrl")
-                twitterWebView.loadData("<html><body>$tweetUrl</body></html>", "text/HTML", "UTF-8")
+                var name = document.get(FieldPath.of("tweetInfo['name']"))
+                Log.d("FIRESTORE", "Encontre textos de tweets: ${name.toString()}")
+                Toast.makeText(
+                    this.context,
+                    "${name.toString()}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                /*var tweetUrl = document.get("")
+                Log.e("FIRESTORE", "Encontre el URL: $tweetUrl")*/
+                /*twitterWebView.loadUrl(tweetUrl.toString())*/
             }
         }.addOnFailureListener { error ->
             Log.e("FIRESTORE", "error in query: $error")

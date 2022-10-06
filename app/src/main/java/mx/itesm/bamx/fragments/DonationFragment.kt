@@ -45,6 +45,8 @@ class DonationFragment : Fragment(), View.OnClickListener {
 
     lateinit var pagarButton : Button
 
+    lateinit var cantidad : ArrayList<Int>
+
     private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
     //private val prices= arrayOf("$70", "$120", "$80", "$30")
 
@@ -77,13 +79,10 @@ class DonationFragment : Fragment(), View.OnClickListener {
     override fun onClick(item_list: View) {
 
         val position = recyclerView.getChildLayoutPosition(item_list)
-        Toast.makeText(activity,
-                        precios[position],
-                        Toast.LENGTH_SHORT).show()
-
-        carrito = precios[position].toInt()
-        Log.d("CARRITO", carrito.toString())
-
+        Toast.makeText(activity, "${(precios[position].toInt()*cantidad[position])}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(activity, "${(total)}", Toast.LENGTH_SHORT).show()
+        //carrito = totalPrice()
+        recyclerView.adapter
     }
 
     override fun onCreateView(
@@ -118,6 +117,7 @@ class DonationFragment : Fragment(), View.OnClickListener {
         //nombres.add(items[3])
 
         precios = ArrayList()
+        cantidad = ArrayList()
         // query to solicite data and obtain information
         val coleccion = Firebase.firestore.collection("ProductList")
 
@@ -151,7 +151,8 @@ class DonationFragment : Fragment(), View.OnClickListener {
                 )*/
                 // datos -> gui
                 // creador adaptador
-                val adapter = DonationAdapter(nombres, precios, this)
+                cantidad.add(0)
+                val adapter = DonationAdapter(nombres, precios, cantidad,this)
 
                 recyclerView.adapter = adapter
 
@@ -186,8 +187,16 @@ class DonationFragment : Fragment(), View.OnClickListener {
     }
 
     private fun goPay() {
+        carrito = totalPrice()
         val intent = Intent(requireActivity(), PagoActivity::class.java)
         startActivity(intent)
     }
 
+    private fun totalPrice(): Int {
+        var total : Int = 0
+        for (item in 0 until cantidad.size){
+            total += precios[item].toInt() * cantidad[item]
+        }
+        return total
+    }
 }
