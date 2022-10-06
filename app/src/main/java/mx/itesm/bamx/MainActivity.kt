@@ -17,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.ktx.Firebase
 import java.lang.Exception
 
 var carrito = 0
@@ -43,6 +44,11 @@ class MainActivity : AppCompatActivity() {
 
         //Initialize Firebase auth
         firebaseAuth = FirebaseAuth.getInstance()
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser != null){
+            Toast.makeText(this, "Iniciando como ${firebaseUser!!.email}", Toast.LENGTH_SHORT).show()
+        }
+
 
         emailButton.setOnClickListener{
             //Something
@@ -90,6 +96,7 @@ class MainActivity : AppCompatActivity() {
                 val firebaseUser = firebaseAuth.currentUser
                 val uid = firebaseUser!!.uid
                 val email = firebaseUser.email
+                Toast.makeText(this, "Iniciando como ${firebaseUser!!.email}", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, RootTabActivity::class.java))
             }
     }

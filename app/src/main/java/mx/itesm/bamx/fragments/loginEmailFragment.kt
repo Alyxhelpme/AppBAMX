@@ -80,7 +80,8 @@ class loginEmailFragment : Fragment() {
                 )
                 authTask.addOnCompleteListener { result ->
                     if (result.isSuccessful) {
-                        Toast.makeText(this.context, "Iniciando sesion", Toast.LENGTH_SHORT).show()
+                        val firebaseUser = firebaseAuth.currentUser
+                        Toast.makeText(this.context, "Iniciando como ${firebaseUser!!.email}", Toast.LENGTH_SHORT).show()
                         Log.d("FIREBASE", "DEBUG: ${result.exception?.message}")
                         startActivity(Intent(this.context, RootTabActivity::class.java))
 
