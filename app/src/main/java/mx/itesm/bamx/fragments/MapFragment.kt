@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -36,6 +37,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
     private lateinit var collection : CollectionReference
     private lateinit var logOutButton : Button
     private lateinit var registerAssociateButton : Button
+    private lateinit var infoButton: Button
     private lateinit var firebaseAuth : FirebaseAuth
     private lateinit var centers : HashMap<String, QueryDocumentSnapshot>
 
@@ -59,14 +61,15 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
         registerAssociateButton = view.findViewById(R.id.becomeAssociateButton)
         registerAssociateButton.setOnClickListener{becomeAssociate()}
 
+        infoButton = view.findViewById(R.id.info)
+        infoButton.setOnClickListener { showInfo() }
+
         logOutButton = view.findViewById(R.id.logout)
         logOutButton.setOnClickListener {
             firebaseAuth = FirebaseAuth.getInstance()
             firebaseAuth.signOut()
             startActivity(Intent(this.context,MainActivity::class.java))
         }
-
-
 
         return view
     }
@@ -147,7 +150,13 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
         startActivity(intent)
     }
 
-
-
-
+    private fun showInfo(){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Conoce acerca de nuestro programa de asociados")
+        builder.setMessage("Nuestros asociados trabajan con nosotros para apoyarnos a captar alimentos para nuestros centros, asi como para colaborar en la planeacion de eventos")
+        builder.setPositiveButton("OK"){
+                dialog, which -> dialog.cancel()
+        }
+        builder.show()
+    }
 }
