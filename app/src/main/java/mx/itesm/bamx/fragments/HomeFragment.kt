@@ -118,18 +118,27 @@ class HomeFragment : Fragment() {
         twitterWebView.settings.javaScriptEnabled = true
         twitterWebView.settings.domStorageEnabled = true
 
-        val twitterCollection = Firebase.firestore.collection("newsTweet/")
+        val twitterCollection = Firebase.firestore.collection("newsTweet")
         val twitterTask = twitterCollection.get()
 
         twitterTask.addOnSuccessListener { result ->
             for (document in result){
-                var name = document.get(FieldPath.of("tweetInfo['name']"))
-                Log.d("FIRESTORE", "Encontre textos de tweets: ${name.toString()}")
-                Toast.makeText(
+                Log.d("FIRESTORE", document.data.toString())
+                var name = document.get("tweetUserName")
+                Log.d("FIRESTORE", "Al fin encontre el nombreee: $name")
+                var url = document.get("tweetUrl")
+                Log.d("FIRESTORE", "Al fin encontre el url: $url")
+                var text = document.get("tweetText")
+                Log.d("FIRESTORE", "Al fin encontre el textooo: $text")
+                var picAddress = document.get("profilePicAddress")
+                Log.d("FIRESTORE", "Al fin encontre la imageeen: $picAddress")
+                /*var name = document.get(FieldPath.of("document.data.tweetInfo.user.screen_name"))
+                Log.d("FIRESTORE", "Encontre textos de tweets: $name")*/
+                /*Toast.makeText(
                     this.context,
-                    "${name.toString()}",
+                    "$name",
                     Toast.LENGTH_SHORT
-                ).show()
+                ).show()*/
                 /*var tweetUrl = document.get("")
                 Log.e("FIRESTORE", "Encontre el URL: $tweetUrl")*/
                 /*twitterWebView.loadUrl(tweetUrl.toString())*/
