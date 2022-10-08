@@ -125,6 +125,7 @@ class HomeFragment : Fragment() {
         val twitterCollection = Firebase.firestore.collection("newsTweet")
         val twitterTask = twitterCollection.get()
 
+
         tweetUserNamesArray = ArrayList()
         tweetTextsArray = ArrayList()
         tweetUrlsArray = ArrayList()
@@ -134,6 +135,7 @@ class HomeFragment : Fragment() {
         lLM.orientation = LinearLayoutManager.VERTICAL
         tweetsRecyclerView.layoutManager = lLM
 
+
         twitterTask.addOnSuccessListener { result ->
 
             var count = 0
@@ -142,6 +144,7 @@ class HomeFragment : Fragment() {
             tweetUrlsArray = ArrayList()
 
             for (document in result){
+
                 /*Log.d("FIRESTORE", document.data.toString())*/
                 val name = document.get("tweetUserName")
                 /*Log.d("FIRESTORE", "Al fin encontre el nombreee: $name")*/
@@ -161,25 +164,6 @@ class HomeFragment : Fragment() {
                 count += 1
                 val tweetAdapter = TweetAdapter(tweetUserNamesArray, tweetTextsArray, tweetUrlsArray)
                 tweetsRecyclerView.adapter = tweetAdapter
-            }
-        }.addOnFailureListener { error ->
-            Log.e("FIRESTORE", "error in query: $error")
-        }
-
-        /*tweetUserNamesArray.add("Nombrecito1")
-        tweetUserNamesArray.add("Nombrecito2")
-        tweetUserNamesArray.add("Nombrecito3")
-        tweetTextsArray.add("Textito1")
-        tweetTextsArray.add("Textito2")
-        tweetTextsArray.add("Textito3")
-        tweetUrlsArray.add("Url1")
-        tweetUrlsArray.add("Url2")
-        tweetUrlsArray.add("Url3")
-
-        Log.d("HOLA", "Arreglo de users: $tweetUserNamesArray")
-        Log.d("HOLA", "Arreglo de textos: $tweetTextsArray")
-        Log.d("HOLA", "Arreglo de urls: $tweetUrlsArray")*/
-
 
 
 
