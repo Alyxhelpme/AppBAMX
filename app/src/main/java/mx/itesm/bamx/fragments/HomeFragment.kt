@@ -9,11 +9,15 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import mx.itesm.bamx.R
 import supportClasses.DonationAdapter
+import supportClasses.TweetAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +38,10 @@ class HomeFragment : Fragment() {
     lateinit var progressBar1 : ProgressBar
     lateinit var progressBar2 : ProgressBar
     lateinit var progressBar3: ProgressBar
-    private lateinit var twitterWebView : WebView
+    lateinit var tweetsRecyclerView : RecyclerView
+    lateinit var tweetUserNamesArray : ArrayList<String>
+    lateinit var tweetTextsArray : ArrayList<String>
+    lateinit var tweetUrlsArray : ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,38 +121,67 @@ class HomeFragment : Fragment() {
             Log.e("FIRESTORE", "error in query: $error")
         }
 
-        twitterWebView = view.findViewById(R.id.webView)
-        twitterWebView.settings.javaScriptEnabled = true
-        twitterWebView.settings.domStorageEnabled = true
 
         val twitterCollection = Firebase.firestore.collection("newsTweet")
         val twitterTask = twitterCollection.get()
 
+        tweetUserNamesArray = ArrayList()
+        tweetTextsArray = ArrayList()
+        tweetUrlsArray = ArrayList()
+        tweetsRecyclerView = view.findViewById(R.id.tweetsRecyclerView)
+
+        val lLM = LinearLayoutManager(activity)
+        lLM.orientation = LinearLayoutManager.VERTICAL
+        tweetsRecyclerView.layoutManager = lLM
+
         twitterTask.addOnSuccessListener { result ->
+
+            var count = 0
+            tweetUserNamesArray = ArrayList()
+            tweetTextsArray = ArrayList()
+            tweetUrlsArray = ArrayList()
+
             for (document in result){
-                Log.d("FIRESTORE", document.data.toString())
-                var name = document.get("tweetUserName")
-                Log.d("FIRESTORE", "Al fin encontre el nombreee: $name")
-                var url = document.get("tweetUrl")
-                Log.d("FIRESTORE", "Al fin encontre el url: $url")
-                var text = document.get("tweetText")
-                Log.d("FIRESTORE", "Al fin encontre el textooo: $text")
-                var picAddress = document.get("profilePicAddress")
-                Log.d("FIRESTORE", "Al fin encontre la imageeen: $picAddress")
-                /*var name = document.get(FieldPath.of("document.data.tweetInfo.user.screen_name"))
-                Log.d("FIRESTORE", "Encontre textos de tweets: $name")*/
-                /*Toast.makeText(
-                    this.context,
-                    "$name",
-                    Toast.LENGTH_SHORT
-                ).show()*/
-                /*var tweetUrl = document.get("")
-                Log.e("FIRESTORE", "Encontre el URL: $tweetUrl")*/
-                /*twitterWebView.loadUrl(tweetUrl.toString())*/
+                /*Log.d("FIRESTORE", document.data.toString())*/
+                val name = document.get("tweetUserName")
+                /*Log.d("FIRESTORE", "Al fin encontre el nombreee: $name")*/
+                val url = document.get("tweetUrl")
+                /*Log.d("FIRESTORE", "Al fin encontre el url: $url")*/
+                val text = document.get("tweetText")
+                /*Log.d("FIRESTORE", "Al fin encontre el textooo: $text")*/
+                val picAddress = document.get("profilePicAddress")
+                /*Log.d("FIRESTORE", "Al fin encontre la imageeen: $picAddress")*/
+                Log.d("TYPE", "$name, Tipo de name: ${name?.javaClass?.name}")
+                Log.d("TYPE", "$url, Tipo de url: ${url?.javaClass?.name}")
+                Log.d("TYPE", "$text, Tipo de texto: ${text?.javaClass?.name}")
+
+                tweetUserNamesArray.add(document.get("tweetUserName").toString())
+                tweetTextsArray.add(document.get("tweetText").toString())
+                tweetUrlsArray.add(document.get("tweetUrl").toString())
+                count += 1
+                val tweetAdapter = TweetAdapter(tweetUserNamesArray, tweetTextsArray, tweetUrlsArray)
+                tweetsRecyclerView.adapter = tweetAdapter
             }
         }.addOnFailureListener { error ->
             Log.e("FIRESTORE", "error in query: $error")
         }
+
+        /*tweetUserNamesArray.add("Nombrecito1")
+        tweetUserNamesArray.add("Nombrecito2")
+        tweetUserNamesArray.add("Nombrecito3")
+        tweetTextsArray.add("Textito1")
+        tweetTextsArray.add("Textito2")
+        tweetTextsArray.add("Textito3")
+        tweetUrlsArray.add("Url1")
+        tweetUrlsArray.add("Url2")
+        tweetUrlsArray.add("Url3")
+
+        Log.d("HOLA", "Arreglo de users: $tweetUserNamesArray")
+        Log.d("HOLA", "Arreglo de textos: $tweetTextsArray")
+        Log.d("HOLA", "Arreglo de urls: $tweetUrlsArray")*/
+
+
+
 
 
         // Inflate the layout for this fragment
