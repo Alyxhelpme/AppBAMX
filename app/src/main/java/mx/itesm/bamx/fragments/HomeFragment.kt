@@ -143,7 +143,7 @@ class HomeFragment : Fragment() {
             tweetTextsArray = ArrayList()
             tweetUrlsArray = ArrayList()
 
-            for (document in result){
+            for (document in result) {
 
                 /*Log.d("FIRESTORE", document.data.toString())*/
                 val name = document.get("tweetUserName")
@@ -162,8 +162,11 @@ class HomeFragment : Fragment() {
                 tweetTextsArray.add(document.get("tweetText").toString())
                 tweetUrlsArray.add(document.get("tweetUrl").toString())
                 count += 1
-                val tweetAdapter = TweetAdapter(tweetUserNamesArray, tweetTextsArray, tweetUrlsArray)
+                val tweetAdapter =
+                    TweetAdapter(tweetUserNamesArray, tweetTextsArray, tweetUrlsArray)
                 tweetsRecyclerView.adapter = tweetAdapter
+            }
+         }
 
 
 
