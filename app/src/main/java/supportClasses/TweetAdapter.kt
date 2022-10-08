@@ -54,7 +54,8 @@ class TweetAdapter(var tweetUserNames : ArrayList<String>,
 
         holder.itemView.setOnClickListener{ v: View ->
             Toast.makeText(holder.itemView.context, "You tapped tweet on pos $position", Toast.LENGTH_SHORT).show()
-            val openTweet = Intent(Intent.ACTION_VIEW, Uri.parse(holder.tweetUrl))
+            val openTweet = Intent(Intent.ACTION_VIEW)
+            openTweet.setData(Uri.parse(holder.tweetUrl))
             v.context.startActivity(openTweet)
         }
 
