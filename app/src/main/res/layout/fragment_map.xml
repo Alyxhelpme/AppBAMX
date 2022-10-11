@@ -51,6 +51,8 @@
         android:layout_height="44dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:background="@drawable/custom_button_1"
+        android:drawableBottom="@drawable/logout_custom"
         android:gravity="center|center_horizontal|center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -117,6 +119,9 @@
 
     <Button
         android:id="@+id/info"
+        android:text="?"
+        android:textColor="#40000B"
+        android:textSize="20dp"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
