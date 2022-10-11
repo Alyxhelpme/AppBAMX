@@ -13,6 +13,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -21,6 +24,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -39,6 +43,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
     private lateinit var registerAssociateButton : Button
     private lateinit var infoButton: Button
     private lateinit var firebaseAuth : FirebaseAuth
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var gso : GoogleSignInOptions
     private lateinit var centers : HashMap<String, QueryDocumentSnapshot>
 
     private lateinit var organizationName : TextView
@@ -53,10 +59,17 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
     ): View? {
         val view = inflater.inflate(R.layout.fragment_map, container, false)
 
+        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
         organizationName = view.findViewById(R.id.organizationName)
         address = view.findViewById(R.id.address)
         email = view.findViewById(R.id.email)
         phoneNumber = view.findViewById(R.id.phoneNumber)
+        firebaseAuth = FirebaseAuth.getInstance()
+        mGoogleSignInClient = GoogleSignIn.getClient(this.requireContext(), gso)
 
         registerAssociateButton = view.findViewById(R.id.becomeAssociateButton)
         registerAssociateButton.setOnClickListener{becomeAssociate()}
@@ -66,8 +79,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
 
         logOutButton = view.findViewById(R.id.logout)
         logOutButton.setOnClickListener {
-            firebaseAuth = FirebaseAuth.getInstance()
+
             firebaseAuth.signOut()
+            mGoogleSignInClient.signOut()
             startActivity(Intent(this.context,MainActivity::class.java))
         }
 
