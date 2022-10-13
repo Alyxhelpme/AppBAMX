@@ -12,7 +12,6 @@ import androidx.annotation.NonNull
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import mx.itesm.bamx.R
-import mx.itesm.bamx.carrito
 import mx.itesm.bamx.carritoItems
 import mx.itesm.bamx.carritoPrices
 import mx.itesm.bamx.carritoQuantities
@@ -57,7 +56,6 @@ class DonationAdapter(var productos : ArrayList<String>,
         return DonationViewHolder(view)
 
     }
-
     // asociamos una vista en particular con un elemento de nuestra fuente
     // de datos
     override fun onBindViewHolder(holder: DonationViewHolder, position: Int) {
@@ -69,7 +67,7 @@ class DonationAdapter(var productos : ArrayList<String>,
             quantity += 1
             cantidad[position] = quantity
             holder.cantidades.text = (quantity.toString())
-            getCarItem(position)
+            getCartItem(position)
         }
 
         holder.deleteButton.setOnClickListener{
@@ -78,7 +76,7 @@ class DonationAdapter(var productos : ArrayList<String>,
                 quantity -= 1
                 cantidad[position] = quantity
                 holder.cantidades.text = (quantity.toString())
-                getCarItem(position)
+                getCartItem(position)
             }
         }
 
@@ -89,7 +87,7 @@ class DonationAdapter(var productos : ArrayList<String>,
         return productos.size
     }
 
-    fun getCarItem(position: Int): Int {
+    fun getCartItem(position: Int): Int {
         carritoPrices[position] =prices[position].toInt() * cantidad[position]
         /*for (item in 0 until carritoItems.size){
 
