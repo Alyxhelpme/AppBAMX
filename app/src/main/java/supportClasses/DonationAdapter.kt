@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import mx.itesm.bamx.R
 import mx.itesm.bamx.carrito
@@ -18,11 +19,11 @@ import kotlin.concurrent.fixedRateTimer
 class DonationAdapter(var productos : ArrayList<String>,
                       var prices : ArrayList<String>,
                       var cantidad : ArrayList<Int>,
-                      var listener : View.OnClickListener) :
+                      var listener : View.OnClickListener,
+var donationListener: DonationListener) :
     RecyclerView.Adapter<DonationAdapter.DonationViewHolder>(){
 
     // internal class that will work as view holder (like a binding stuff)
-
     class DonationViewHolder(itemView: View) :
             RecyclerView.ViewHolder(itemView) {
             var deleteButton = itemView.findViewById<Button>(R.id.deleteItem)
@@ -40,6 +41,8 @@ class DonationAdapter(var productos : ArrayList<String>,
                     imagen = itemView.findViewById(R.id.idImagen)
 
                 }
+
+
 
     }
 
@@ -61,10 +64,13 @@ class DonationAdapter(var productos : ArrayList<String>,
         var quantity : Int = 0
         holder.nombre.text = productos[position]
         holder.price.text = "$" + prices[position] + " MXN"
-        holder.addButton.setOnClickListener{
+        holder.addButton.setOnClickListener {
             quantity += 1
             cantidad[position] = quantity
             holder.cantidades.text = (quantity.toString())
+            getTotal(position)
+            donationListener.updateCount()
+
         }
 
         holder.deleteButton.setOnClickListener{
@@ -73,6 +79,7 @@ class DonationAdapter(var productos : ArrayList<String>,
                 quantity -= 1
                 cantidad[position] = quantity
                 holder.cantidades.text = (quantity.toString())
+                donationListener.updateCount()
             }
         }
     }
@@ -92,4 +99,13 @@ class DonationAdapter(var productos : ArrayList<String>,
         return cantidad.size
     }
 
+    fun getTotal(position: Int): Int {
+        return prices[position].toInt() * cantidad[position].toInt()
+    }
+
+    public interface DonationListener {
+
+        fun updateCount();
+    }
 }
+

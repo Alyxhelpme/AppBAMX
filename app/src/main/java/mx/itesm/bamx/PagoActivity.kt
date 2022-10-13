@@ -32,6 +32,6 @@ class PagoActivity : AppCompatActivity() {
             }
         }
         val textito = findViewById<TextView>(R.id.ejemploTV)
-        textito.text = carrito.toString()
+        textito.text = "Total a pagar: " + carrito.toString()
     }
 }
