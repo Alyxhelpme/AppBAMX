@@ -5,43 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FCEEF5"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="13dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="184dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bamxlogo" />
 
     <TextView
         android:id="@+id/greetingMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:fontFamily="sans-serif-black"
         android:text="Bienvenido"
+        android:textAlignment="center"
         android:textColor="#BE0035"
         android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.391" />
-
-    <Button
-        android:id="@+id/googleLoginButton"
-        android:layout_width="210dp"
-        android:layout_height="49dp"
-
-        android:width="180dp"
-
-        android:background="@drawable/custom_button_1"
-        android:backgroundTint="#FFDADA"
-        android:drawableLeft="@drawable/googleloginicon"
-        android:drawablePadding="-10dp"
-        android:text="Iniciar con Google"
-        android:textColor="#40000B"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.516" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/mailLoginButton"
@@ -55,20 +45,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.619"
+        app:layout_constraintTop_toBottomOf="@+id/googleLoginButton"
+        app:layout_constraintVertical_bias="0.082"
         app:strokeColor="#EA2727"
         app:strokeWidth="3dp" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/googleLoginButton"
+        android:layout_width="210dp"
+        android:layout_height="49dp"
+
+        android:layout_marginTop="24dp"
+
+        android:width="180dp"
+        android:background="@drawable/custom_button_1"
+        android:backgroundTint="#FFDADA"
+        android:drawableLeft="@drawable/googleloginicon"
+        android:paddingStart="19dp"
+        android:paddingEnd="19dp"
+        android:text="Iniciar con Google"
+        android:textColor="#40000B"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15"
-        app:srcCompat="@drawable/bamxlogo" />
+        app:layout_constraintTop_toBottomOf="@+id/greetingMessage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
