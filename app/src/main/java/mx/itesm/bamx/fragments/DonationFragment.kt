@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +22,10 @@ import java.util.*
 import kotlin.collections.ArrayList
 import mx.itesm.bamx.PagoActivity
 import mx.itesm.bamx.carrito
+import kotlin.concurrent.schedule
+import android.os.Handler as Handl
+import java.lang.Override as Override1
+import java.util.TimerTask as TimerTask1
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -33,7 +38,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [DonationFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DonationFragment : Fragment(), View.OnClickListener {
+class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.DonationListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -44,9 +49,8 @@ class DonationFragment : Fragment(), View.OnClickListener {
     lateinit var precios : ArrayList<String>
 
     lateinit var pagarButton : Button
-
+    lateinit var totalTV : TextView
     lateinit var cantidad : ArrayList<Int>
-
     private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
     //private val prices= arrayOf("$70", "$120", "$80", "$30")
 
@@ -96,6 +100,9 @@ class DonationFragment : Fragment(), View.OnClickListener {
 
         // gui
         recyclerView = view.findViewById(R.id.itemsRV) // this may not work
+        totalTV = view.findViewById(R.id.totalTV)
+
+
 
         //layout manager
         val llm = LinearLayoutManager(activity)
@@ -152,7 +159,7 @@ class DonationFragment : Fragment(), View.OnClickListener {
                 // datos -> gui
                 // creador adaptador
                 cantidad.add(0)
-                val adapter = DonationAdapter(nombres, precios, cantidad,this)
+                val adapter = DonationAdapter(nombres, precios, cantidad,this, this)
 
                 recyclerView.adapter = adapter
 
@@ -163,6 +170,16 @@ class DonationFragment : Fragment(), View.OnClickListener {
 
 
         return view
+    }
+
+    override fun onViewCreated (view: View, savedInstanceState: Bundle?) {
+
+        Timer("fun").schedule(5 * 1000) {
+            //totalPrice()
+        }
+
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     companion object {
@@ -192,11 +209,17 @@ class DonationFragment : Fragment(), View.OnClickListener {
         startActivity(intent)
     }
 
-    private fun totalPrice(): Int {
+    fun totalPrice(): Int {
         var total : Int = 0
         for (item in 0 until cantidad.size){
             total += precios[item].toInt() * cantidad[item]
         }
+        totalTV.text = "Total: " + total.toString()
         return total
     }
+
+    override fun updateCount() {
+        totalPrice();
+    }
+
 }

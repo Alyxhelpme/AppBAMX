@@ -8,6 +8,7 @@
     tools:context=".fragments.RewardsFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="0dp"
@@ -16,14 +17,16 @@
         android:text="Donaciones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/MainTV"
         android:layout_width="251dp"
         android:layout_height="92dp"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="60dp"
         android:fontFamily="@font/interblack"
         android:text="¿Que quieres \n donar?"
@@ -37,13 +40,12 @@
         android:id="@+id/itemsRV"
         android:layout_width="350dp"
         android:layout_height="428dp"
-        android:layout_marginTop="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MainTV"
-        app:layout_constraintVertical_bias="0.04000002"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.561"
         tools:listitem="@layout/item_list" />
 
     <Button
@@ -51,7 +53,7 @@
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="197dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/custom_button_1"
         android:fontFamily="@font/inter"
         android:shadowRadius="0"
@@ -61,7 +63,20 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/totalTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="Total:"
+        android:textAlignment="center"
+        android:textColor="#40000B"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/becomeAssociateButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
