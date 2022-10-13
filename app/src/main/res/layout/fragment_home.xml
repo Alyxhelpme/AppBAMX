@@ -29,24 +29,24 @@
             android:id="@+id/mainTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginStart="39dp"
+            android:layout_marginBottom="13dp"
             android:fontFamily="@font/interblack"
             android:text="Noticias"
             android:textColor="#BE0035"
             android:textSize="32sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/tweetsRecyclerView"
+            app:layout_constraintStart_toStartOf="@+id/tweetsRecyclerView" />
 
         <TextView
             android:id="@+id/goalsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="328dp"
             android:fontFamily="@font/interblack"
             android:text="Metas mensuales"
             android:textColor="#BE0035"
             android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.304"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,40 +56,41 @@
             android:id="@+id/goal1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/inter"
             android:text="100Kg de arroz"
             android:textColor="#3F000A"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.165"
+            app:layout_constraintHorizontal_bias="0.161"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/goalsTextView" />
 
         <ProgressBar
             android:id="@+id/progressBar1"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="334dp"
+            android:layout_width="335dp"
             android:layout_height="15dp"
 
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/custom_progressbar"
             android:backgroundTint="#3F000A"
             android:backgroundTintMode="add"
             android:foregroundTint="#3F000A"
+
             android:indeterminate="false"
+
             android:max="100"
             android:min="0"
             android:progress="30"
             android:progressBackgroundTint="#FFD8D9"
             android:progressBackgroundTintMode="src_in"
-
             android:progressDrawable="@drawable/custom_progressbar"
-
             android:progressTint="#930029"
             android:progressTintMode="src_in"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.565"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/goal1" />
 
@@ -97,25 +98,24 @@
             android:id="@+id/goal2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/inter"
             android:text="200 rollos de papel higiénico"
             android:textColor="#3F000A"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.325"
+            app:layout_constraintHorizontal_bias="0.318"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progressBar1" />
 
         <ProgressBar
             android:id="@+id/progressBar2"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="334dp"
-            android:layout_height="15dp"
+            android:layout_width="335dp"
+            android:layout_height="16dp"
 
-            android:layout_marginTop="10dp"
-
+            android:layout_marginTop="16dp"
             android:background="@drawable/custom_progressbar"
             android:backgroundTint="#3F000A"
             android:backgroundTintMode="add"
@@ -130,6 +130,7 @@
             android:progressTint="#930029"
             android:progressTintMode="src_in"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.565"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/goal2" />
 
@@ -144,65 +145,45 @@
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.158"
+            app:layout_constraintHorizontal_bias="0.164"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
 
         <ProgressBar
             android:id="@+id/progressBar3"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="334dp"
+            android:layout_width="335dp"
             android:layout_height="15dp"
 
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/custom_progressbar"
             android:backgroundTint="#3F000A"
             android:backgroundTintMode="add"
             android:foregroundTint="#3F000A"
+
             android:indeterminate="false"
             android:max="100"
             android:min="0"
             android:progress="30"
             android:progressBackgroundTint="#FFD8D9"
             android:progressBackgroundTintMode="src_in"
-
             android:progressDrawable="@drawable/custom_progressbar"
             android:progressTint="#930029"
             android:progressTintMode="src_in"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.565"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/goal3" />
 
-        <Button
-            android:id="@+id/rewardsButton"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="197dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="34dp"
-            android:background="@drawable/custom_button_1"
-            android:fontFamily="@font/inter"
-            android:shadowRadius="0"
-            android:text="Recompensas"
-            android:textAllCaps="false"
-            android:textColor="#40000B"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/webView"
-            app:layout_constraintVertical_bias="0.93" />
-
-        <WebView
-            android:id="@+id/webView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tweetsRecyclerView"
             android:layout_width="0dp"
             android:layout_height="200dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="120dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/goalsTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:listitem="@layout/tweet" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
