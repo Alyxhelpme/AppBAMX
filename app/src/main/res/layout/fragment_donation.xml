@@ -64,4 +64,17 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/shopCar"
+        android:layout_width="55dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#FBEDF4"
+        android:drawableLeft="@drawable/ic_baseline_shopping_cart_24"
+        app:layout_constraintBottom_toTopOf="@+id/itemsRV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toEndOf="@+id/MainTV"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.597" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

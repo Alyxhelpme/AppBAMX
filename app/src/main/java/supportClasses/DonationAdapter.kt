@@ -1,5 +1,6 @@
 package supportClasses
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,9 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import mx.itesm.bamx.R
 import mx.itesm.bamx.carrito
+import mx.itesm.bamx.carritoItems
+import mx.itesm.bamx.carritoPrices
+import mx.itesm.bamx.carritoQuantities
 import mx.itesm.bamx.fragments.DonationFragment
 import kotlin.concurrent.fixedRateTimer
 
@@ -65,6 +69,7 @@ class DonationAdapter(var productos : ArrayList<String>,
             quantity += 1
             cantidad[position] = quantity
             holder.cantidades.text = (quantity.toString())
+            getCarItem(position)
         }
 
         holder.deleteButton.setOnClickListener{
@@ -73,8 +78,10 @@ class DonationAdapter(var productos : ArrayList<String>,
                 quantity -= 1
                 cantidad[position] = quantity
                 holder.cantidades.text = (quantity.toString())
+                getCarItem(position)
             }
         }
+
     }
 
     // obtener total de elementos
@@ -82,10 +89,20 @@ class DonationAdapter(var productos : ArrayList<String>,
         return productos.size
     }
 
-    fun getPrice(position: Int): Int {
+    fun getCarItem(position: Int): Int {
+        carritoPrices[position] =prices[position].toInt() * cantidad[position]
+        /*for (item in 0 until carritoItems.size){
 
-        return prices[position].toInt()
+            Log.d("ITEM:", carritoQuantities.toString())
 
+        }*/
+        if (carritoPrices[position] == 0){
+            carritoItems[position] == ""
+        }
+        else {
+            carritoItems[position] = productos[position]
+        }
+        return carritoPrices[position]
     }
 
     fun getProductCount(): Int{

@@ -13,14 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import mx.itesm.bamx.R
+import mx.itesm.bamx.*
 import supportClasses.DonationAdapter
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
 import kotlin.collections.ArrayList
-import mx.itesm.bamx.PagoActivity
-import mx.itesm.bamx.carrito
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -44,7 +42,7 @@ class DonationFragment : Fragment(), View.OnClickListener {
     lateinit var precios : ArrayList<String>
 
     lateinit var pagarButton : Button
-
+    lateinit var shopButton : Button
     lateinit var cantidad : ArrayList<Int>
 
     private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
@@ -93,6 +91,8 @@ class DonationFragment : Fragment(), View.OnClickListener {
         val view: View = inflater.inflate(R.layout.fragment_donation, container, false)
         pagarButton = view.findViewById(R.id.becomeAssociateButton)
         pagarButton.setOnClickListener { (goPay()) }
+        shopButton = view.findViewById(R.id.shopCar)
+        shopButton.setOnClickListener{(shopList())}
 
         // gui
         recyclerView = view.findViewById(R.id.itemsRV) // this may not work
@@ -110,11 +110,6 @@ class DonationFragment : Fragment(), View.OnClickListener {
         //        we also gotta make them clickable but it ain't hard, found an indian dude
         //        that explains how to do it
         nombres = ArrayList()
-
-        //nombres.add(items[0])
-        //nombres.add(items[1])
-        //nombres.add(items[2])
-        //nombres.add(items[3])
 
         precios = ArrayList()
         cantidad = ArrayList()
@@ -152,6 +147,8 @@ class DonationFragment : Fragment(), View.OnClickListener {
                 // datos -> gui
                 // creador adaptador
                 cantidad.add(0)
+                carritoPrices.add(0)
+                carritoItems.add("none")
                 val adapter = DonationAdapter(nombres, precios, cantidad,this)
 
                 recyclerView.adapter = adapter
@@ -192,11 +189,27 @@ class DonationFragment : Fragment(), View.OnClickListener {
         startActivity(intent)
     }
 
+    private fun shopList(){
+        val intent = Intent(requireActivity(), shoppingCartFragment::class.java)
+        startActivity(intent)
+    }
+
     private fun totalPrice(): Int {
         var total : Int = 0
         for (item in 0 until cantidad.size){
             total += precios[item].toInt() * cantidad[item]
         }
+        for (item in 0 until carritoPrices.size){
+            Log.d("ITEM:", carritoItems.toString() + carritoPrices.toString())
+        }
         return total
+    }
+
+    private fun shopCar(){
+        for (item in 0 until cantidad.size){
+            if (precios[item].toInt() > 0){
+                carritoItems.add(nombres[item])
+            }
+        }
     }
 }
