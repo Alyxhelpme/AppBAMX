@@ -190,7 +190,7 @@ class DonationFragment : Fragment(), View.OnClickListener {
     }
 
     private fun shopList(){
-        val intent = Intent(requireActivity(), shoppingCartFragment::class.java)
+        val intent = Intent(requireActivity(), ShoppingCart::class.java)
         startActivity(intent)
     }
 
