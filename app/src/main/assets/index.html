@@ -5,6 +5,9 @@
     function replace(id, newContent){
         document.getElementById(id).innerHTML = newContent;
     }
+    function getPaymentStatus(status){
+        Android.getStatus(status);
+    }
     </script>
 </head>
 <body>
@@ -18,7 +21,7 @@
 </div>
 <script src="https://www.paypal.com/sdk/js?client-id=ATCOmJj1A9ymZZ3AkHL2yYjVv2HK7WlK122Eew4mpMF-9zR5JhiArL83HuciJn2byEiUtlSQoq3mFB0v&enable-funding=venmo&currency=MXN" data-sdk-integration-source="button-factory"></script>
 <script>
-
+      var paymentStatus = 'false';
       function initPayPalButton() {
         paypal.Buttons({
           style: {
@@ -38,6 +41,7 @@
           onApprove: function(data, actions) {
             return actions.order.capture().then(function(orderData) {
 
+              paymentStatus = 'true';
               // Full available details
               console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
 
@@ -45,6 +49,8 @@
               const element = document.getElementById('paypal-button-container');
               element.innerHTML = '';
               element.innerHTML = '<h3>¡Gracias por tu donativo!</h3>';
+              //And here we're going to declare a variable that tells if the payment was completed succesfully, if you could enter this message page. Then it was completed
+              getPaymentStatus(paymentStatus);
 
               // Or go to another URL:  actions.redirect('thank_you.html');
 
