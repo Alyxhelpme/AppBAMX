@@ -14,15 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import mx.itesm.bamx.R
+import mx.itesm.bamx.*
 import supportClasses.DonationAdapter
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
 import kotlin.collections.ArrayList
-import mx.itesm.bamx.PagoActivity
-import mx.itesm.bamx.carrito
 import kotlin.concurrent.schedule
+
 import android.os.Handler as Handl
 import java.lang.Override as Override1
 import java.util.TimerTask as TimerTask1
@@ -49,11 +48,13 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
     lateinit var precios : ArrayList<String>
 
     lateinit var pagarButton : Button
+    lateinit var carButton : Button
     lateinit var totalTV : TextView
     lateinit var cantidad : ArrayList<Int>
     private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
     //private val prices= arrayOf("$70", "$120", "$80", "$30")
 
+    private var db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -62,22 +63,6 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
-        val date = Date()
-        val localDate: LocalDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        val year = localDate.year
-        val month = localDate.monthValue
-        val day = localDate.dayOfMonth
-        //val a: LocalDate = LocalDate.getYear()
-        //val date:String = year.toString()
-        //val delim = "-"
-        Log.d("Year: ",year.toString())
-        Log.d("Month: ",month.toString())
-        Log.d("Day: ", day.toString())
-        //producto:
-
-        // Donation
-
     }
 
     override fun onClick(item_list: View) {
@@ -97,6 +82,9 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
         val view: View = inflater.inflate(R.layout.fragment_donation, container, false)
         pagarButton = view.findViewById(R.id.becomeAssociateButton)
         pagarButton.setOnClickListener { (goPay()) }
+
+        carButton = view.findViewById(R.id.carBtn)
+        carButton.setOnClickListener{(goCar())}
 
         // gui
         recyclerView = view.findViewById(R.id.itemsRV) // this may not work
@@ -205,7 +193,52 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
 
     private fun goPay() {
         carrito = totalPrice()
+        val date = Date()
+
+        val localDate: LocalDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        val email = user
+        val donation = hashMapOf(
+            "Email" to email,
+            "Fecha" to localDate.toString(),
+            "Canasta básica" to (if(cantidad[0] == 1){
+                ((cantidad[0]).toString() + " Unidades")}
+                else {
+                    ((cantidad[0]).toString() + " Unidades")
+                }),
+            "Arroz" to ((cantidad[1]* 100).toString() + " KG"),
+            "Frijol" to ((cantidad[2]*100).toString() + " KG"),
+            "Garbanzo" to ((cantidad[3]*100).toString() + " KG"),
+            "Azucar" to ((cantidad[4]* 100).toString() + " KG"),
+            "Aceite" to ((cantidad[5]*100).toString() + " LT"),
+            "Papel higiénico" to (if(cantidad[6] == 1){
+                ((cantidad[6]).toString() + " Unidades")}
+                else {
+                    ((cantidad[6]).toString() + " Unidades")
+                })
+            ,
+            "Productos de limpieza" to (if(cantidad[7] == 1){
+                ((cantidad[7]).toString() + " Unidades")}
+                else {
+                ((cantidad[7]).toString() + " Unidades")
+                }),
+            "Precio total" to (carrito.toString() + " MXN")
+        )
+
+        db.collection("Donations").document().set(donation)
+            .addOnSuccessListener{
+                Toast.makeText(this.context, "Added", Toast.LENGTH_SHORT).show()
+            }
+
         val intent = Intent(requireActivity(), PagoActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goCar() {
+
+
+        carrito = totalPrice()
+        carItems()
+        val intent = Intent(requireActivity(), CarActivity::class.java)
         startActivity(intent)
     }
 
@@ -216,6 +249,21 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
         }
         totalTV.text = "Total: $" + total.toString()
         return total
+    }
+
+    fun carItems() {
+        cantidadC = ArrayList()
+        preciosC = ArrayList()
+        nombresC = ArrayList()
+
+        for (item in 0 until cantidad.size) {
+            if (cantidad[item] == 0) {
+                continue
+            }
+            nombresC.add(nombres[item])
+            preciosC.add(precios[item])
+            cantidadC.add(cantidad[item])
+        }
     }
 
     override fun updateCount() {
