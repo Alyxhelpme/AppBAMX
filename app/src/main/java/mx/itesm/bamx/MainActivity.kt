@@ -21,9 +21,11 @@ import java.lang.Exception
 
 var carrito = 0
 lateinit var test : String
+lateinit var user : String
 lateinit var nombresC : ArrayList<String>
 lateinit var preciosC : ArrayList<String>
 lateinit var cantidadC : ArrayList<Int>
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -94,6 +96,7 @@ class MainActivity : AppCompatActivity() {
                 val firebaseUser = firebaseAuth.currentUser
                 val uid = firebaseUser!!.uid
                 val email = firebaseUser.email
+                user = firebaseAuth.currentUser!!.email.toString()
                 startActivity(Intent(this, RootTabActivity::class.java))
             }
     }
@@ -107,6 +110,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (firebaseAuth.currentUser != null){
+            user = firebaseAuth.currentUser!!.email.toString()
             startActivity(Intent(this, RootTabActivity::class.java))
         }
     }
