@@ -54,7 +54,6 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
     private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
     //private val prices= arrayOf("$70", "$120", "$80", "$30")
 
-    private var db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -197,11 +196,12 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
 
         val localDate: LocalDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         val email = user
-        val donation = hashMapOf(
+        donation = hashMapOf(
+            "Id" to UUID.randomUUID().toString(),
             "Email" to email,
             "Fecha" to localDate.toString(),
             "Canasta básica" to (if(cantidad[0] == 1){
-                ((cantidad[0]).toString() + " Unidades")}
+                ((cantidad[0]).toString() + " Unidad")}
                 else {
                     ((cantidad[0]).toString() + " Unidades")
                 }),
@@ -211,30 +211,31 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
             "Azucar" to ((cantidad[4]* 100).toString() + " KG"),
             "Aceite" to ((cantidad[5]*100).toString() + " LT"),
             "Papel higiénico" to (if(cantidad[6] == 1){
-                ((cantidad[6]).toString() + " Unidades")}
+                ((cantidad[6]).toString() + " Unidad")}
                 else {
                     ((cantidad[6]).toString() + " Unidades")
                 })
             ,
             "Productos de limpieza" to (if(cantidad[7] == 1){
-                ((cantidad[7]).toString() + " Unidades")}
+                ((cantidad[7]).toString() + " Unidad")}
                 else {
                 ((cantidad[7]).toString() + " Unidades")
                 }),
             "Precio total" to (carrito.toString() + " MXN")
         )
 
-        db.collection("Donations").document().set(donation)
-            .addOnSuccessListener{
-                Toast.makeText(this.context, "Added", Toast.LENGTH_SHORT).show()
-            }
+        if (carrito > 0){
+            val intent = Intent(requireActivity(), PagoActivity::class.java)
+            startActivity(intent)
+        }
+        else {
+            Toast.makeText(this.context,"Agrega items para donar", Toast.LENGTH_SHORT)
+                .show()
+        }
 
-        val intent = Intent(requireActivity(), PagoActivity::class.java)
-        startActivity(intent)
     }
 
     private fun goCar() {
-
 
         carrito = totalPrice()
         carItems()
