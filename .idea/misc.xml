@@ -19,10 +19,10 @@
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_pago.xml" value="0.165" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_paypal.xml" value="0.10677083333333333" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_root_tab.xml" value="0.25" />
-        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_donation.xml" value="0.5" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_donation.xml" value="0.25" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_donation_lv.xml" value="0.36808471679687504" />
-        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_home.xml" value="0.375" />
-        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_map.xml" value="0.25" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_home.xml" value="0.165" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_map.xml" value="0.45" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_rewards.xml" value="0.25" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/item_list.xml" value="0.25" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/item_listCar.xml" value="0.16394927536231885" />

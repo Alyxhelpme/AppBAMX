@@ -65,9 +65,17 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButton
             .build()
 
         organizationName = view.findViewById(R.id.organizationName)
+        organizationName.text = "Selecciona un centro de acopio en el mapa"
+
         address = view.findViewById(R.id.address)
+        address.text = ""
+
         email = view.findViewById(R.id.email)
+        email.text = ""
+
         phoneNumber = view.findViewById(R.id.phoneNumber)
+        phoneNumber.text = ""
+
         firebaseAuth = FirebaseAuth.getInstance()
         mGoogleSignInClient = GoogleSignIn.getClient(this.requireContext(), gso)
 
