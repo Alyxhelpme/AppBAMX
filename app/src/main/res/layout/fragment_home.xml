@@ -25,7 +25,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/mainTextView"
@@ -44,25 +44,24 @@
             android:id="@+id/goalsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-14dp"
             android:fontFamily="@font/interblack"
             android:text="Metas mensuales"
             android:textColor="#BE0035"
             android:textSize="32sp"
             android:translationY="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.296"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.577" />
+            app:layout_constraintTop_toBottomOf="@+id/tweetsRecyclerView" />
 
         <ProgressBar
             android:id="@+id/progressBar1"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="335dp"
-            android:layout_height="15dp"
+            android:layout_height="10dp"
 
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
             android:background="@drawable/custom_progressbar"
             android:backgroundTint="#3F000A"
             android:backgroundTintMode="add"
@@ -87,11 +86,11 @@
             android:id="@+id/goal2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
             android:fontFamily="@font/inter"
             android:text="200 rollos de papel higiénico"
             android:textColor="#3F000A"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:translationX="37dp"
             android:translationY="30dp"
@@ -102,11 +101,11 @@
             android:id="@+id/goal3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
             android:fontFamily="@font/inter"
             android:text="50Kg de azucar"
             android:textColor="#3F000A"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:translationX="37dp"
             android:translationY="30dp"
@@ -117,9 +116,9 @@
             android:id="@+id/progressBar3"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="335dp"
-            android:layout_height="15dp"
+            android:layout_height="10dp"
 
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
             android:background="@drawable/custom_progressbar"
             android:backgroundTint="#3F000A"
             android:backgroundTintMode="add"
@@ -143,9 +142,9 @@
             android:id="@+id/progressBar2"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="335dp"
-            android:layout_height="16dp"
+            android:layout_height="10dp"
 
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
             android:background="@drawable/custom_progressbar"
             android:backgroundTint="#3F000A"
             android:backgroundTintMode="add"
@@ -168,11 +167,11 @@
             android:id="@+id/goal1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/inter"
             android:text="100Kg de arroz"
             android:textColor="#3F000A"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             android:translationX="37dp"
             android:translationY="30dp"
@@ -181,14 +180,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tweetsRecyclerView"
-            android:layout_width="407dp"
-            android:layout_height="298dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintBottom_toTopOf="@+id/goalsTextView"
+            android:layout_width="395dp"
+            android:layout_height="447dp"
+            android:layout_marginTop="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mainTextView"
-            app:layout_constraintVertical_bias="0.309"
             tools:listitem="@layout/tweet" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
