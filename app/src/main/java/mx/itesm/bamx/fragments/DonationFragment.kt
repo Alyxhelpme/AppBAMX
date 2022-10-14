@@ -247,7 +247,7 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
         for (item in 0 until cantidad.size){
             total += precios[item].toInt() * cantidad[item]
         }
-        totalTV.text = "Total: " + total.toString()
+        totalTV.text = "Total: $" + total.toString()
         return total
     }
 
