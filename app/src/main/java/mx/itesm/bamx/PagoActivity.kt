@@ -44,19 +44,13 @@ class PagoActivity : AppCompatActivity() {
         val textito = findViewById<TextView>(R.id.ejemploTV)
         textito.text = "Total a pagar: " + carrito.toString()
 
+    }
+    class WebAppInterface(private val mContext: Context){
+        @JavascriptInterface
+        fun getStatus(tempPayment: Boolean){ //Aqui esta la variable de pago
+            PagoActivity.paymentstatus = tempPayment
+            Toast.makeText(mContext,tempPayment.toString(),Toast.LENGTH_SHORT).show()
+        }
+    }
 
-    }
-    fun getPayment(): Boolean {
-        return paymentstatus
-    }
-    fun setPayment(tempPayment: Boolean){
-        paymentstatus = tempPayment
-    }
-}
-class WebAppInterface(private val mContext: Context){
-    @JavascriptInterface
-    fun getStatus(tempPayment: Boolean){ //Aqui esta la variable de pago
-        Toast.makeText(mContext,tempPayment.toString(),Toast.LENGTH_SHORT).show()
-        PagoActivity.paymentstatus = tempPayment
-    }
 }
