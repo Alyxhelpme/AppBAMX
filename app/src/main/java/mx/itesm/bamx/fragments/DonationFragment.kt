@@ -14,14 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import mx.itesm.bamx.R
+import mx.itesm.bamx.*
 import supportClasses.DonationAdapter
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
 import kotlin.collections.ArrayList
-import mx.itesm.bamx.PagoActivity
-import mx.itesm.bamx.carrito
 import kotlin.concurrent.schedule
 import android.os.Handler as Handl
 import java.lang.Override as Override1
@@ -49,6 +47,7 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
     lateinit var precios : ArrayList<String>
 
     lateinit var pagarButton : Button
+    lateinit var carButton : Button
     lateinit var totalTV : TextView
     lateinit var cantidad : ArrayList<Int>
     private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
@@ -97,6 +96,9 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
         val view: View = inflater.inflate(R.layout.fragment_donation, container, false)
         pagarButton = view.findViewById(R.id.becomeAssociateButton)
         pagarButton.setOnClickListener { (goPay()) }
+
+        carButton = view.findViewById(R.id.carBtn)
+        carButton.setOnClickListener{(goCar())}
 
         // gui
         recyclerView = view.findViewById(R.id.itemsRV) // this may not work
@@ -209,6 +211,13 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
         startActivity(intent)
     }
 
+    private fun goCar() {
+        carrito = totalPrice()
+        carItems()
+        val intent = Intent(requireActivity(), CarActivity::class.java)
+        startActivity(intent)
+    }
+
     fun totalPrice(): Int {
         var total : Int = 0
         for (item in 0 until cantidad.size){
@@ -216,6 +225,21 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
         }
         totalTV.text = "Total: " + total.toString()
         return total
+    }
+
+    fun carItems() {
+        cantidadC = ArrayList()
+        preciosC = ArrayList()
+        nombresC = ArrayList()
+
+        for (item in 0 until cantidad.size) {
+            if (cantidad[item] == 0) {
+                continue
+            }
+            nombresC.add(nombres[item])
+            preciosC.add(precios[item])
+            cantidadC.add(cantidad[item])
+        }
     }
 
     override fun updateCount() {

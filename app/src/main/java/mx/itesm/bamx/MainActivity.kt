@@ -20,6 +20,10 @@ import com.google.firebase.auth.GoogleAuthProvider
 import java.lang.Exception
 
 var carrito = 0
+lateinit var test : String
+lateinit var nombresC : ArrayList<String>
+lateinit var preciosC : ArrayList<String>
+lateinit var cantidadC : ArrayList<Int>
 
 class MainActivity : AppCompatActivity() {
 

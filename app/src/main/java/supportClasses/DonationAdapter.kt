@@ -1,5 +1,6 @@
 package supportClasses
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,6 +60,7 @@ var donationListener: DonationListener) :
 
     // asociamos una vista en particular con un elemento de nuestra fuente
     // de datos
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: DonationViewHolder, position: Int) {
 
         var quantity : Int = 0
