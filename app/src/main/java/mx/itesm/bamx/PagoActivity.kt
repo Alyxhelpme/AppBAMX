@@ -9,6 +9,8 @@ import android.webkit.WebViewClient
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class PagoActivity : AppCompatActivity() {
     companion object{
@@ -50,7 +52,21 @@ class PagoActivity : AppCompatActivity() {
         fun getStatus(tempPayment: Boolean){ //Aqui esta la variable de pago
             PagoActivity.paymentstatus = tempPayment
             Toast.makeText(mContext,tempPayment.toString(),Toast.LENGTH_SHORT).show()
+            saveDonation()
+        }
+
+        fun saveDonation(){
+            var db = Firebase.firestore
+
+            if (PagoActivity.paymentstatus)
+                db.collection("Donations").document().set(donation)
+                    .addOnSuccessListener{
+                        Toast.makeText(mContext, "Added", Toast.LENGTH_SHORT).show()
+                    }
+
         }
     }
+
+
 
 }

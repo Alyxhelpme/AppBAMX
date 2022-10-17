@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +39,9 @@ class HomeFragment : Fragment() {
     lateinit var progressBar1 : ProgressBar
     lateinit var progressBar2 : ProgressBar
     lateinit var progressBar3: ProgressBar
+    lateinit var progressText1: TextView
+    lateinit var progressText2: TextView
+    lateinit var progressText3: TextView
     lateinit var tweetsRecyclerView : RecyclerView
     lateinit var tweetUserNamesArray : ArrayList<String>
     lateinit var tweetTextsArray : ArrayList<String>
@@ -70,25 +74,55 @@ class HomeFragment : Fragment() {
 
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
+        progressText1 = view.findViewById(R.id.goal1)
         progressBar1 = view.findViewById(R.id.progressBar1)
         progressBar1.max = 100
         progressBar1.min = 0
 
         progressBar1.progress = currentProgress1
 
+        progressText2 = view.findViewById(R.id.goal2)
         progressBar2 = view.findViewById(R.id.progressBar2)
         progressBar2.max = 200
         progressBar2.min = 0
 
         progressBar2.progress = currentProgress2
 
+        progressText3 = view.findViewById(R.id.goal3)
         progressBar3 = view.findViewById(R.id.progressBar3)
         progressBar3.max = 50
         progressBar3.min = 0
 
         progressBar3.progress = currentProgress3
 
-        val coleccion = Firebase.firestore.collection("TotalDonations")
+        val coleccion = Firebase.firestore.collection("TotalDonaciones")
+        val coleccion2 = Firebase.firestore.collection("LimitesMetas")
+
+        val queryTask2 = coleccion2.get()
+        queryTask2.addOnSuccessListener { result2 ->
+            // recorrer datos
+            Toast.makeText(
+                this.context,
+                "QUERY EXITOSO 2",
+                Toast.LENGTH_SHORT
+            ).show()
+            for (documentoActual in result2) {
+                Log.d(
+                    "FIRESTORE PPI", "${documentoActual.id}"
+                )
+                var arrozMeta = documentoActual.get("Arroz").toString().toInt()
+                progressBar1.max = arrozMeta
+                progressText1.text = arrozMeta.toString() + "kg de arroz"
+
+                var rollosMeta = documentoActual.get("Rollos").toString().toInt()
+                progressBar2.max = rollosMeta
+                progressText2.text = rollosMeta.toString() + " rollos de papel higiénico"
+
+                var garrafonesMeta = documentoActual.get("Garrafones").toString().toInt()
+                progressBar3.max = garrafonesMeta
+                progressText3.text = garrafonesMeta.toString() + " garrafones"
+            }
+        }
 
 
         val queryTask = coleccion.get()
@@ -103,19 +137,12 @@ class HomeFragment : Fragment() {
                 Log.d(
                     "FIRESTORE", "${documentoActual.id}"
                 )
-                var aceite = documentoActual.get("Aceite")
                 var arroz = documentoActual.get("Arroz").toString().toInt()
                 progressBar1.progress = arroz
-                var garbanzo = documentoActual.get("Garbanzo").toString().toInt()
-                //progressBar2.progress = garbanzo
-                var papel = documentoActual.get("PapelHigienico").toString().toInt()
-                progressBar2.progress = papel
-
-                var frijol = documentoActual.get("Frijol")
-                var canasta = documentoActual.get("CanastaBasica")
-                var limpieza = documentoActual.get("ProductosDeLimpieza")
-                var azucar = documentoActual.get("Azucar").toString().toInt()
-                progressBar3.progress = azucar
+                var rollos = documentoActual.get("Rollos").toString().toInt()
+                progressBar2.progress = rollos
+                var garrafones = documentoActual.get("Garrafones").toString().toInt()
+                progressBar3.progress = garrafones
             }
         }.addOnFailureListener{ error ->
             Log.e("FIRESTORE", "error in query: $error")
