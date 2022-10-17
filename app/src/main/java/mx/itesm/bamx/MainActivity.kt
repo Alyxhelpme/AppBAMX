@@ -25,7 +25,8 @@ lateinit var user : String
 lateinit var nombresC : ArrayList<String>
 lateinit var preciosC : ArrayList<String>
 lateinit var cantidadC : ArrayList<Int>
-lateinit var donation : HashMap<String, String>
+lateinit var donation : HashMap<String, Any>
+lateinit var goals : HashMap<String, Any>
 
 
 class MainActivity : AppCompatActivity() {

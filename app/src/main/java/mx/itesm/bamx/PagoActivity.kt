@@ -3,6 +3,7 @@ package mx.itesm.bamx
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -33,9 +34,6 @@ class PagoActivity : AppCompatActivity() {
         webview.addJavascriptInterface(WebAppInterface(this),"Android")
         webview.loadUrl("file:///android_asset/index.html")
 
-
-
-
         webview.webViewClient = object : WebViewClient(){
             override fun onLoadResource(view: WebView?, url: String?) {
                 super.onLoadResource(view, url)
@@ -57,16 +55,33 @@ class PagoActivity : AppCompatActivity() {
 
         fun saveDonation(){
             var db = Firebase.firestore
+            var arroz = 0
+            var aceite = 0
+            var rollos = 0
 
-            if (PagoActivity.paymentstatus)
-                db.collection("Donations").document().set(donation)
-                    .addOnSuccessListener{
-                        Toast.makeText(mContext, "Added", Toast.LENGTH_SHORT).show()
+            if (PagoActivity.paymentstatus) {
+                db.collection("Donaciones").document().set(donation)
+                    .addOnSuccessListener {
+                        Toast.makeText(mContext, "Donacion realizada", Toast.LENGTH_SHORT).show()
                     }
+                Firebase.firestore.collection("Metas").get()
+                    .addOnSuccessListener { result->
+                        for (documentoActual in result){
+                            arroz = documentoActual.get("Arroz").toString().toInt()
+                            aceite = documentoActual.get("Aceite").toString().toInt()
+                            rollos = documentoActual.get("Rollos").toString().toInt()
+                        }
 
+                        var goalArroz = donation.getValue("Arroz").toString().toInt() + arroz
+                        var goalAceite = donation.getValue("Aceite").toString().toInt() + aceite
+                        var goalRollos = donation.getValue("Papel higiénico").toString().toInt() + rollos
+                        db.collection("Metas").document("Total")
+                            .update("Arroz", goalArroz,
+                                "Aceite", goalAceite,
+                                "Rollos", goalRollos)
+                }
+            }
         }
     }
-
-
-
 }
+

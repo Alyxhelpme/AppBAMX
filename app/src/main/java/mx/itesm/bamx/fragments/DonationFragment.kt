@@ -42,11 +42,11 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
 
     lateinit var nombres : ArrayList<String>
     lateinit var precios : ArrayList<String>
-
     lateinit var pagarButton : Button
     lateinit var carButton : Button
     lateinit var totalTV : TextView
     lateinit var cantidad : ArrayList<Int>
+
     private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
     //private val prices= arrayOf("$70", "$120", "$80", "$30")
 
@@ -102,14 +102,9 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
         //        we also gotta make them clickable but it ain't hard, found an indian dude
         //        that explains how to do it
         nombres = ArrayList()
-
-        //nombres.add(items[0])
-        //nombres.add(items[1])
-        //nombres.add(items[2])
-        //nombres.add(items[3])
-
         precios = ArrayList()
         cantidad = ArrayList()
+
         // query to solicite data and obtain information
         val coleccion = Firebase.firestore.collection("ProductList")
 
@@ -131,16 +126,7 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
                 var precio = documentoActual.get("precio")
                 precios.add(precio.toString())
                 nombres.add(documentoActual.get("producto").toString())
-                /*
-                Log.d("PRECIOS: ", precios.toString())
-                Log.d("NOMBRES: ", nombres.toString())
 
-                Log.d(
-                    "FIRESTORE", "${documentoActual.get("precio")}"
-                )
-                Log.d(
-                    "FIRESTORE",   "${documentoActual.getString("producto")}"
-                )*/
                 // datos -> gui
                 // creador adaptador
                 cantidad.add(0)
@@ -191,36 +177,18 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
     private fun goPay() {
         carrito = totalPrice()
         val date = Date()
-
         val localDate: LocalDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         val email = user
+
+        // donacion que se va a meter a la base de datos
         donation = hashMapOf(
             "Id" to UUID.randomUUID().toString(),
             "Email" to email,
             "Fecha" to localDate.toString(),
-            "Canasta básica" to (if(cantidad[0] == 1){
-                ((cantidad[0]).toString() + " Unidad")}
-                else {
-                    ((cantidad[0]).toString() + " Unidades")
-                }),
-            "Arroz" to ((cantidad[1]* 100).toString() + " KG"),
-            "Frijol" to ((cantidad[2]*100).toString() + " KG"),
-            "Garbanzo" to ((cantidad[3]*100).toString() + " KG"),
-            "Azucar" to ((cantidad[4]* 100).toString() + " KG"),
-            "Aceite" to ((cantidad[5]*100).toString() + " LT"),
-            "Papel higiénico" to (if(cantidad[6] == 1){
-                ((cantidad[6]).toString() + " Unidad")}
-                else {
-                    ((cantidad[6]).toString() + " Unidades")
-                })
-            ,
-            "Productos de limpieza" to (if(cantidad[7] == 1){
-                ((cantidad[7]).toString() + " Unidad")}
-                else {
-                ((cantidad[7]).toString() + " Unidades")
-                }),
-            "Precio total" to (carrito.toString() + " MXN")
-        )
+            "Precio total" to carrito)
+        for (item in 0 until cantidad.size){
+            donation.put(nombres[item],cantidad[item])
+        }
 
         if (carrito > 0){
             val intent = Intent(requireActivity(), PagoActivity::class.java)
@@ -234,7 +202,6 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
     }
 
     private fun goCar() {
-
         carrito = totalPrice()
         carItems()
         val intent = Intent(requireActivity(), CarActivity::class.java)
