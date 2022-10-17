@@ -5,6 +5,7 @@
       <map>
         <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/custom_button_1.xml" value="0.21" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/custom_button_2.xml" value="0.2015" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/custom_button_3.xml" value="0.2115" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/custom_progressbar.xml" value="0.173" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/fragment_donation_custom_tvheader.xml" value="0.2025" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/fragment_donation_lv.xml" value="0.1" />
@@ -14,19 +15,19 @@
         <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/fragment_rewards_custom_tvheader.xml" value="0.2015" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/root_tab_custom.xml" value="0.232" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/drawable/twitter_tab_custom.xml" value="0.108" />
-        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_car.xml" value="0.11" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_car.xml" value="0.33323974609374996" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_main.xml" value="0.15906524658203125" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_pago.xml" value="0.165" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_paypal.xml" value="0.10677083333333333" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/activity_root_tab.xml" value="0.25" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_donation.xml" value="0.25" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_donation_lv.xml" value="0.36808471679687504" />
-        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_home.xml" value="0.165" />
-        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_map.xml" value="0.45" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_home.xml" value="0.335" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_map.xml" value="0.25" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/fragment_rewards.xml" value="0.25" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/item_list.xml" value="0.25" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/item_listCar.xml" value="0.16394927536231885" />
-        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/item_list_car.xml" value="0.165" />
+        <entry key="../../retosi/AppBAMX/app/src/main/res/layout/item_list_car.xml" value="0.45688537597656254" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/test.xml" value="0.19427083333333334" />
         <entry key="../../retosi/AppBAMX/app/src/main/res/layout/tweet.xml" value="0.48272399902343754" />
         <entry key="..\:/Documentos/GitHub/AppBAMX/app/src/main/res/layout/activity_main.xml" value="0.264" />
@@ -43,18 +44,6 @@
         <entry key="..\:/Users/chess/Documents/TEC/Semestre5/AppBAMX/app/src/main/res/layout/fragment_login_email.xml" value="0.2667572463768116" />
         <entry key="..\:/Users/chess/Documents/TEC/Semestre5/AppBAMX/app/src/main/res/layout/fragment_map.xml" value="0.3625" />
         <entry key="..\:/Users/chess/Documents/TEC/Semestre5/AppBAMX/app/src/main/res/layout/fragment_register_email.xml" value="0.3625" />
-
-        <entry key="..\:/Users/chess/Documents/TEC/Semestre5/AppBAMX/app/src/main/res/layout/fragment_rewards.xml" value="0.36302083333333335" />
-        <entry key="..\:/Users/chess/Documents/TEC/Semestre5/AppBAMX/app/src/main/res/layout/fragment_tweets_recycler_view.xml" value="0.3703125" />
-        <entry key="..\:/Users/chess/Documents/TEC/Semestre5/AppBAMX/app/src/main/res/layout/item_list.xml" value="0.4466666666666667" />
-        <entry key="..\:/Users/chess/Documents/TEC/Semestre5/AppBAMX/app/src/main/res/layout/layout_bg.xml" value="0.3619791666666667" />
-        <entry key="..\:/Users/chess/Documents/TEC/Semestre5/AppBAMX/app/src/main/res/layout/roundimage.xml" value="0.3703125" />
-        <entry key="..\:/Users/chess/Documents/TEC/Semestre5/AppBAMX/app/src/main/res/layout/tweet.xml" value="0.5" />
-        <entry key="..\:/Users/chess/Documents/TEC/Semestre5/AppBAMX/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1935" />
-        <entry key="..\:/Users/gaelr/Documents/AppBAMX/AppBAMX/app/src/main/res/drawable/custom_button_1.xml" value="0.115" />
-        <entry key="..\:/Users/gaelr/Documents/AppBAMX/AppBAMX/app/src/main/res/drawable/custom_button_2.xml" value="0.115" />
-        <entry key="..\:/Users/gaelr/Documents/AppBAMX/AppBAMX/app/src/main/res/drawable/round_button.xml" value="0.3035" />
-
         <entry key="..\:/Users/gaelr/Documents/AppBAMX/AppBAMX/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/gaelr/Documents/AppBAMX/AppBAMX/app/src/main/res/layout/activity_register_associate.xml" value="0.264" />
         <entry key="..\:/Users/gaelr/Documents/AppBAMX/AppBAMX/app/src/main/res/layout/activity_root_tab.xml" value="0.136" />
