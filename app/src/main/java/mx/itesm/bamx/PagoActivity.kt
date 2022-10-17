@@ -44,7 +44,7 @@ class PagoActivity : AppCompatActivity() {
         }
         webview.loadUrl("javascript:Android.getIds()")
         val textito = findViewById<TextView>(R.id.ejemploTV)
-        textito.text = "Total a pagar: " + carrito.toString()
+        textito.text = "Total a pagar: $" + carrito.toString() + " MXN"
 
     }
     class WebAppInterface(private val mContext: Context){

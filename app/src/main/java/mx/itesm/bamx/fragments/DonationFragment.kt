@@ -22,10 +22,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
 
-import android.os.Handler as Handl
-import java.lang.Override as Override1
-import java.util.TimerTask as TimerTask1
-
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -82,7 +78,7 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
         pagarButton = view.findViewById(R.id.becomeAssociateButton)
         pagarButton.setOnClickListener { (goPay()) }
 
-        carButton = view.findViewById(R.id.carBtn)
+        carButton = view.findViewById(R.id.carbtn)
         carButton.setOnClickListener{(goCar())}
 
         // gui
@@ -248,7 +244,7 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
         for (item in 0 until cantidad.size){
             total += precios[item].toInt() * cantidad[item]
         }
-        totalTV.text = "Total: $" + total.toString()
+        totalTV.text = "Total: $" + total.toString() + " MXN"
         return total
     }
 
