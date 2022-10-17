@@ -85,6 +85,8 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
         recyclerView = view.findViewById(R.id.itemsRV) // this may not work
         totalTV = view.findViewById(R.id.totalTV)
 
+        totalTV.text = "Total: $0 MXN"
+
 
 
         //layout manager
