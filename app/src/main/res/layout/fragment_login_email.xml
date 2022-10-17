@@ -16,8 +16,11 @@
         android:layout_marginBottom="58dp"
         android:text="¿NO TIENES CUENTA?"
         android:textColor="#40000B"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/loginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.602"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
     <EditText
@@ -39,6 +42,7 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailLoginInput" />
 
@@ -46,15 +50,18 @@
         android:id="@+id/greetingMessage3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="58dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="26dp"
         android:fontFamily="sans-serif-black"
         android:text="Iniciar sesión"
+        android:textAlignment="center"
         android:textColor="#BE0035"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/emailLoginInput"
-        app:layout_constraintEnd_toEndOf="@+id/emailLoginInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.62"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -68,6 +75,7 @@
         android:textColor="#40000B"
         app:layout_constraintBottom_toTopOf="@+id/noAccount"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLoginInput"
         app:strokeColor="#EA2727"
@@ -91,6 +99,7 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/passwordLoginInput"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/greetingMessage3" />
 
