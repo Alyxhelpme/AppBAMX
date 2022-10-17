@@ -20,7 +20,6 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.concurrent.schedule
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -48,7 +47,6 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
     lateinit var cantidad : ArrayList<Int>
 
     private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
-    //private val prices= arrayOf("$70", "$120", "$80", "$30")
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -63,9 +61,6 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
     override fun onClick(item_list: View) {
 
         val position = recyclerView.getChildLayoutPosition(item_list)
-        Toast.makeText(activity, "${(precios[position].toInt()*cantidad[position])}", Toast.LENGTH_SHORT).show()
-        //Toast.makeText(activity, "${(total)}", Toast.LENGTH_SHORT).show()
-        //carrito = totalPrice()
         recyclerView.adapter
     }
 
@@ -112,17 +107,9 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
 
         queryTask.addOnSuccessListener { result ->
             // recorrer datos
-            Toast.makeText(
-                this.context,
-                "QUERY EXITOSO",
-                Toast.LENGTH_SHORT
-            ).show()
-
             precios = ArrayList()
             for (documentoActual in result) {
-                /*Log.d(
-                    "FIRESTORE", "${documentoActual.id}"
-                )*/
+
                 var precio = documentoActual.get("precio")
                 precios.add(precio.toString())
                 nombres.add(documentoActual.get("producto").toString())
@@ -141,16 +128,6 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
 
 
         return view
-    }
-
-    override fun onViewCreated (view: View, savedInstanceState: Bundle?) {
-
-        Timer("fun").schedule(5 * 1000) {
-            //totalPrice()
-        }
-
-        super.onViewCreated(view, savedInstanceState)
-
     }
 
     companion object {
@@ -195,7 +172,7 @@ class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.Donat
             startActivity(intent)
         }
         else {
-            Toast.makeText(this.context,"Agrega items para donar", Toast.LENGTH_SHORT)
+            Toast.makeText(this.context,"Agrega items para poder donar.", Toast.LENGTH_SHORT)
                 .show()
         }
 

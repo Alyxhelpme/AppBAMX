@@ -93,11 +93,6 @@ class HomeFragment : Fragment() {
         val queryTask2 = coleccion2.get()
         queryTask2.addOnSuccessListener { result2 ->
             // recorrer datos
-            Toast.makeText(
-                this.context,
-                "QUERY EXITOSO 2",
-                Toast.LENGTH_SHORT
-            ).show()
             for (documentoActual in result2) {
                 Log.d(
                     "FIRESTORE PPI", "${documentoActual.id}"
@@ -121,11 +116,6 @@ class HomeFragment : Fragment() {
         val queryTask = coleccion.get()
         queryTask.addOnSuccessListener { result ->
             // recorrer datos
-            Toast.makeText(
-                this.context,
-                "QUERY EXITOSO",
-                Toast.LENGTH_SHORT
-            ).show()
             for (documentoActual in result) {
                 Log.d(
                     "FIRESTORE", "${documentoActual.id}"
