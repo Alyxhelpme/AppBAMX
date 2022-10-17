@@ -59,18 +59,10 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var aceite = 0
-        var arroz = 0
-        var garbanzo = 0
-        var papel = 0
-        var frijol = 0
-        var canasta = 0
-        var limpieza = 0
-        var azucar = 0
 
-        val currentProgress1 = arroz
-        val currentProgress2 = 50
-        val currentProgress3 = 50
+        val currentProgress1 = 0
+        val currentProgress2 = 0
+        val currentProgress3 = 0
 
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
@@ -95,7 +87,7 @@ class HomeFragment : Fragment() {
 
         progressBar3.progress = currentProgress3
 
-        val coleccion = Firebase.firestore.collection("TotalDonaciones")
+        val coleccion = Firebase.firestore.collection("Metas")
         val coleccion2 = Firebase.firestore.collection("LimitesMetas")
 
         val queryTask2 = coleccion2.get()
@@ -118,9 +110,10 @@ class HomeFragment : Fragment() {
                 progressBar2.max = rollosMeta
                 progressText2.text = rollosMeta.toString() + " rollos de papel higiénico"
 
-                var garrafonesMeta = documentoActual.get("Garrafones").toString().toInt()
-                progressBar3.max = garrafonesMeta
-                progressText3.text = garrafonesMeta.toString() + " garrafones"
+                var aceiteMeta = documentoActual.get("Aceite").toString().toInt()
+
+                progressBar3.max = aceiteMeta
+                progressText3.text = aceiteMeta.toString() + " lt de aceite"
             }
         }
 
@@ -141,13 +134,12 @@ class HomeFragment : Fragment() {
                 progressBar1.progress = arroz
                 var rollos = documentoActual.get("Rollos").toString().toInt()
                 progressBar2.progress = rollos
-                var garrafones = documentoActual.get("Garrafones").toString().toInt()
-                progressBar3.progress = garrafones
+                var aceite = documentoActual.get("Aceite").toString().toInt()
+                progressBar3.progress = aceite
             }
         }.addOnFailureListener{ error ->
             Log.e("FIRESTORE", "error in query: $error")
         }
-
 
         val twitterCollection = Firebase.firestore.collection("newsTweet")
         val twitterTask = twitterCollection.get()
