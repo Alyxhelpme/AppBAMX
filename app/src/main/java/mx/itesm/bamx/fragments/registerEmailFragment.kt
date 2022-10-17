@@ -98,12 +98,14 @@ class registerEmailFragment : Fragment() {
                             Toast.makeText(this.context, "Introduce un correo electronico valido", Toast.LENGTH_LONG).show()
                         } else if (result.exception?.message.toString() == "The given password is invalid. [ Password should be at least 6 characters ]"){
                             Toast.makeText(this.context, "La contraseña es demasiado corta. Debe contener al menos 6 caracteres.", Toast.LENGTH_LONG).show()
+                        } else if (result.exception?.message.toString() == "The email address is already in use by another account."){
+                            Toast.makeText(this.context, "El correo electronico proporcionado ya esta registrado.", Toast.LENGTH_LONG).show()
                         }
 
                     }
                 }
             } else {
-                Toast.makeText(this.context, "Los campos llenados no son validos", Toast.LENGTH_LONG).show()
+                Toast.makeText(this.context, "Faltan datos por llenar para crear tu cuenta", Toast.LENGTH_LONG).show()
                 email.text = null
                 password.text = null
                 passwordConfirmation.text = null

@@ -97,6 +97,8 @@ class loginEmailFragment : Fragment() {
                             Toast.makeText(this.context, "Contraseña incorrecta", Toast.LENGTH_LONG)
                                 .show()
                             passwordLogin.text = null
+                        } else if (result.exception?.message.toString() == "The email address is badly formatted."){
+                            Toast.makeText(this.context, "Introduce un correo electronico valido", Toast.LENGTH_LONG).show()
                         }
                     }
                 }
