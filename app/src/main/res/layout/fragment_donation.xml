@@ -5,22 +5,10 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FCEEF5"
     tools:context=".fragments.RewardsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#FCEEF5"
-        android:text="Donaciones"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/MainTV"
@@ -44,8 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.561"
+        app:layout_constraintTop_toBottomOf="@+id/MainTV"
+        app:layout_constraintVertical_bias="0.059"
         tools:listitem="@layout/item_list" />
 
     <Button
@@ -53,15 +41,16 @@
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="197dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="52dp"
         android:background="@drawable/custom_button_1"
         android:fontFamily="@font/inter"
         android:shadowRadius="0"
-        android:text="Donar"
+        android:text="Proceder a pago"
         android:textAllCaps="false"
         android:textColor="#40000B"
+        android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -69,7 +58,7 @@
         android:id="@+id/totalTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="8dp"
         android:text="Total:"
         android:textAlignment="center"
         android:textColor="#40000B"
@@ -77,16 +66,19 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/becomeAssociateButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemsRV"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/carBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="32dp"
-        android:text="Carrito"
+        android:id="@+id/carbtn"
+        android:layout_width="150px"
+        android:layout_height="150px"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/shopping_cart__button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintStart_toEndOf="@+id/MainTV"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
