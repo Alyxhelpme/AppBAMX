@@ -7,20 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import mx.itesm.bamx.R
+import mx.itesm.bamx.*
 import supportClasses.DonationAdapter
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
 import kotlin.collections.ArrayList
-import mx.itesm.bamx.PagoActivity
-import mx.itesm.bamx.carrito
+import kotlin.concurrent.schedule
+
+import android.os.Handler as Handl
+import java.lang.Override as Override1
+import java.util.TimerTask as TimerTask1
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -33,7 +37,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [DonationFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DonationFragment : Fragment(), View.OnClickListener {
+class DonationFragment : Fragment(), View.OnClickListener, DonationAdapter.DonationListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -44,9 +48,9 @@ class DonationFragment : Fragment(), View.OnClickListener {
     lateinit var precios : ArrayList<String>
 
     lateinit var pagarButton : Button
-
+    lateinit var carButton : Button
+    lateinit var totalTV : TextView
     lateinit var cantidad : ArrayList<Int>
-
     private val items= arrayOf("1kg de arroz + 1kg de frijoles", "3kg de tomates", "Garrafón de agua", "3 latas de atún")
     //private val prices= arrayOf("$70", "$120", "$80", "$30")
 
@@ -58,22 +62,6 @@ class DonationFragment : Fragment(), View.OnClickListener {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
-        val date = Date()
-        val localDate: LocalDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        val year = localDate.year
-        val month = localDate.monthValue
-        val day = localDate.dayOfMonth
-        //val a: LocalDate = LocalDate.getYear()
-        //val date:String = year.toString()
-        //val delim = "-"
-        Log.d("Year: ",year.toString())
-        Log.d("Month: ",month.toString())
-        Log.d("Day: ", day.toString())
-        //producto:
-
-        // Donation
-
     }
 
     override fun onClick(item_list: View) {
@@ -94,8 +82,14 @@ class DonationFragment : Fragment(), View.OnClickListener {
         pagarButton = view.findViewById(R.id.becomeAssociateButton)
         pagarButton.setOnClickListener { (goPay()) }
 
+        carButton = view.findViewById(R.id.carBtn)
+        carButton.setOnClickListener{(goCar())}
+
         // gui
         recyclerView = view.findViewById(R.id.itemsRV) // this may not work
+        totalTV = view.findViewById(R.id.totalTV)
+
+
 
         //layout manager
         val llm = LinearLayoutManager(activity)
@@ -152,7 +146,7 @@ class DonationFragment : Fragment(), View.OnClickListener {
                 // datos -> gui
                 // creador adaptador
                 cantidad.add(0)
-                val adapter = DonationAdapter(nombres, precios, cantidad,this)
+                val adapter = DonationAdapter(nombres, precios, cantidad,this, this)
 
                 recyclerView.adapter = adapter
 
@@ -163,6 +157,16 @@ class DonationFragment : Fragment(), View.OnClickListener {
 
 
         return view
+    }
+
+    override fun onViewCreated (view: View, savedInstanceState: Bundle?) {
+
+        Timer("fun").schedule(5 * 1000) {
+            //totalPrice()
+        }
+
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     companion object {
@@ -188,15 +192,83 @@ class DonationFragment : Fragment(), View.OnClickListener {
 
     private fun goPay() {
         carrito = totalPrice()
-        val intent = Intent(requireActivity(), PagoActivity::class.java)
+        val date = Date()
+
+        val localDate: LocalDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        val email = user
+        donation = hashMapOf(
+            "Id" to UUID.randomUUID().toString(),
+            "Email" to email,
+            "Fecha" to localDate.toString(),
+            "Canasta básica" to (if(cantidad[0] == 1){
+                ((cantidad[0]).toString() + " Unidad")}
+                else {
+                    ((cantidad[0]).toString() + " Unidades")
+                }),
+            "Arroz" to ((cantidad[1]* 100).toString() + " KG"),
+            "Frijol" to ((cantidad[2]*100).toString() + " KG"),
+            "Garbanzo" to ((cantidad[3]*100).toString() + " KG"),
+            "Azucar" to ((cantidad[4]* 100).toString() + " KG"),
+            "Aceite" to ((cantidad[5]*100).toString() + " LT"),
+            "Papel higiénico" to (if(cantidad[6] == 1){
+                ((cantidad[6]).toString() + " Unidad")}
+                else {
+                    ((cantidad[6]).toString() + " Unidades")
+                })
+            ,
+            "Productos de limpieza" to (if(cantidad[7] == 1){
+                ((cantidad[7]).toString() + " Unidad")}
+                else {
+                ((cantidad[7]).toString() + " Unidades")
+                }),
+            "Precio total" to (carrito.toString() + " MXN")
+        )
+
+        if (carrito > 0){
+            val intent = Intent(requireActivity(), PagoActivity::class.java)
+            startActivity(intent)
+        }
+        else {
+            Toast.makeText(this.context,"Agrega items para donar", Toast.LENGTH_SHORT)
+                .show()
+        }
+
+    }
+
+    private fun goCar() {
+
+        carrito = totalPrice()
+        carItems()
+        val intent = Intent(requireActivity(), CarActivity::class.java)
         startActivity(intent)
     }
 
-    private fun totalPrice(): Int {
+    fun totalPrice(): Int {
         var total : Int = 0
         for (item in 0 until cantidad.size){
             total += precios[item].toInt() * cantidad[item]
         }
+        totalTV.text = "Total: $" + total.toString()
         return total
     }
+
+    fun carItems() {
+        cantidadC = ArrayList()
+        preciosC = ArrayList()
+        nombresC = ArrayList()
+
+        for (item in 0 until cantidad.size) {
+            if (cantidad[item] == 0) {
+                continue
+            }
+            nombresC.add(nombres[item])
+            preciosC.add(precios[item])
+            cantidadC.add(cantidad[item])
+        }
+    }
+
+    override fun updateCount() {
+        totalPrice();
+    }
+
 }

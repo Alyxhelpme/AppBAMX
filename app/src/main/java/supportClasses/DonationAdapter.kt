@@ -1,5 +1,6 @@
 package supportClasses
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import mx.itesm.bamx.R
 import mx.itesm.bamx.carrito
@@ -18,11 +20,11 @@ import kotlin.concurrent.fixedRateTimer
 class DonationAdapter(var productos : ArrayList<String>,
                       var prices : ArrayList<String>,
                       var cantidad : ArrayList<Int>,
-                      var listener : View.OnClickListener) :
+                      var listener : View.OnClickListener,
+var donationListener: DonationListener) :
     RecyclerView.Adapter<DonationAdapter.DonationViewHolder>(){
 
     // internal class that will work as view holder (like a binding stuff)
-
     class DonationViewHolder(itemView: View) :
             RecyclerView.ViewHolder(itemView) {
             var deleteButton = itemView.findViewById<Button>(R.id.deleteItem)
@@ -41,6 +43,8 @@ class DonationAdapter(var productos : ArrayList<String>,
 
                 }
 
+
+
     }
 
     // momento en que creamos la lista
@@ -56,15 +60,19 @@ class DonationAdapter(var productos : ArrayList<String>,
 
     // asociamos una vista en particular con un elemento de nuestra fuente
     // de datos
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: DonationViewHolder, position: Int) {
 
         var quantity : Int = 0
         holder.nombre.text = productos[position]
         holder.price.text = "$" + prices[position] + " MXN"
-        holder.addButton.setOnClickListener{
+        holder.addButton.setOnClickListener {
             quantity += 1
             cantidad[position] = quantity
             holder.cantidades.text = (quantity.toString())
+            getTotal(position)
+            donationListener.updateCount()
+
         }
 
         holder.deleteButton.setOnClickListener{
@@ -73,6 +81,7 @@ class DonationAdapter(var productos : ArrayList<String>,
                 quantity -= 1
                 cantidad[position] = quantity
                 holder.cantidades.text = (quantity.toString())
+                donationListener.updateCount()
             }
         }
     }
@@ -92,4 +101,13 @@ class DonationAdapter(var productos : ArrayList<String>,
         return cantidad.size
     }
 
+    fun getTotal(position: Int): Int {
+        return prices[position].toInt() * cantidad[position].toInt()
+    }
+
+    public interface DonationListener {
+
+        fun updateCount();
+    }
 }
+
