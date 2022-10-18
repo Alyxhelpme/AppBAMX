@@ -1,6 +1,8 @@
 package mx.itesm.bamx
 
 import android.content.Context
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +12,13 @@ import android.webkit.WebViewClient
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.jakewharton.processphoenix.ProcessPhoenix;
+import mx.itesm.bamx.fragments.HomeFragment
+import java.util.*
 
 class PagoActivity : AppCompatActivity() {
     companion object{
@@ -81,7 +88,15 @@ class PagoActivity : AppCompatActivity() {
                                 "Rollos", goalRollos)
                 }
             }
+            goHome()
         }
+
+        fun goHome() {
+            val intent = Intent(mContext, RootTabActivity::class.java)
+            mContext.startActivity(intent)
+        }
+
     }
+
 }
 
