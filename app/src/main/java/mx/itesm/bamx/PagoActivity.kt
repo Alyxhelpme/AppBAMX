@@ -56,20 +56,20 @@ class PagoActivity : AppCompatActivity() {
         @JavascriptInterface
         fun getStatus(tempPayment: Boolean){ //Aqui esta la variable de pago
             PagoActivity.paymentstatus = tempPayment
-            Toast.makeText(mContext,tempPayment.toString(),Toast.LENGTH_SHORT).show()
+//            Toast.makeText(mContext,tempPayment.toString(),Toast.LENGTH_SHORT).show()
             saveDonation()
         }
 
         fun saveDonation(){
             var db = Firebase.firestore
-            var arroz = 0
-            var aceite = 0
-            var rollos = 0
+//            var arroz = 0
+//            var aceite = 0
+//            var rollos = 0
 
             if (PagoActivity.paymentstatus) {
                 db.collection("Donaciones").document().set(donation)
                     .addOnSuccessListener {
-                        Toast.makeText(mContext, "Donacion realizada", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(mContext, "Donacion realizada", Toast.LENGTH_LONG).show()
                     }
                 Firebase.firestore.collection("Metas").get()
                     .addOnSuccessListener { result->
@@ -87,6 +87,22 @@ class PagoActivity : AppCompatActivity() {
                                 "Aceite", goalAceite,
                                 "Rollos", goalRollos)
                 }
+            }
+            val coleccion = Firebase.firestore.collection("Metas")
+
+            val queryTask = coleccion.get()
+            queryTask.addOnSuccessListener { result ->
+                // recorrer datos
+                for (documentoActual in result) {
+                    Log.d(
+                        "FIRESTORE", "${documentoActual.id}"
+                    )
+                    arroz = documentoActual.get("Arroz").toString().toInt()
+                    rollos = documentoActual.get("Rollos").toString().toInt()
+                    aceite = documentoActual.get("Aceite").toString().toInt()
+                }
+            }.addOnFailureListener { error ->
+                Log.e("FIRESTORE", "error in query: $error")
             }
             goHome()
         }

@@ -18,6 +18,9 @@ import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import mx.itesm.bamx.R
+import mx.itesm.bamx.aceite
+import mx.itesm.bamx.arroz
+import mx.itesm.bamx.rollos
 import supportClasses.DonationAdapter
 import supportClasses.TweetAdapter
 
@@ -73,21 +76,21 @@ class HomeFragment : Fragment() {
         progressBar1.max = 100
         progressBar1.min = 0
 
-        progressBar1.progress = currentProgress1
+        progressBar1.progress = arroz
 
         progressText2 = view.findViewById(R.id.goal2)
         progressBar2 = view.findViewById(R.id.progressBar2)
         progressBar2.max = 200
         progressBar2.min = 0
 
-        progressBar2.progress = currentProgress2
+        progressBar2.progress = rollos
 
         progressText3 = view.findViewById(R.id.goal3)
         progressBar3 = view.findViewById(R.id.progressBar3)
         progressBar3.max = 50
         progressBar3.min = 0
 
-        progressBar3.progress = currentProgress3
+        progressBar3.progress = aceite
 
         refreshBtn = view.findViewById(R.id.refreshBtn)
         refreshBtn.setOnClickListener {
@@ -101,11 +104,11 @@ class HomeFragment : Fragment() {
                     Log.d(
                         "FIRESTORE", "${documentoActual.id}"
                     )
-                    var arroz = documentoActual.get("Arroz").toString().toInt()
+                    arroz = documentoActual.get("Arroz").toString().toInt()
                     progressBar1.progress = arroz
-                    var rollos = documentoActual.get("Rollos").toString().toInt()
+                    rollos = documentoActual.get("Rollos").toString().toInt()
                     progressBar2.progress = rollos
-                    var aceite = documentoActual.get("Aceite").toString().toInt()
+                    aceite = documentoActual.get("Aceite").toString().toInt()
                     progressBar3.progress = aceite
                 }
             }.addOnFailureListener { error ->
@@ -114,9 +117,8 @@ class HomeFragment : Fragment() {
 
         }
 
-        val coleccion = Firebase.firestore.collection("Metas")
-        val coleccion2 = Firebase.firestore.collection("LimitesMetas")
 
+        val coleccion2 = Firebase.firestore.collection("LimitesMetas")
         val queryTask2 = coleccion2.get()
         queryTask2.addOnSuccessListener { result2 ->
             // recorrer datos
@@ -139,7 +141,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-
+        val coleccion = Firebase.firestore.collection("Metas")
         val queryTask = coleccion.get()
         queryTask.addOnSuccessListener { result ->
             // recorrer datos
