@@ -19,7 +19,6 @@
             android:layout_height="0dp"
 
             android:text="@string/hello_blank_fragment"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -44,7 +43,7 @@
             android:id="@+id/goalsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-14dp"
+            android:layout_marginTop="-30dp"
             android:fontFamily="@font/interblack"
             android:text="Metas mensuales"
             android:textColor="#BE0035"
@@ -134,12 +133,10 @@
             android:progressTint="#930029"
             android:progressTintMode="src_in"
             android:translationY="30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.486"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goal3"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/goal3" />
 
         <ProgressBar
             android:id="@+id/progressBar2"
@@ -190,6 +187,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mainTextView"
             tools:listitem="@layout/tweet" />
+
+        <Button
+            android:id="@+id/refreshBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/refreshpageoption"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textAllCaps="false"
+            android:textColor="#3F000A"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

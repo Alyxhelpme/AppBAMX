@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -42,6 +43,7 @@ class HomeFragment : Fragment() {
     lateinit var progressText1: TextView
     lateinit var progressText2: TextView
     lateinit var progressText3: TextView
+    lateinit var refreshBtn : Button
     lateinit var tweetsRecyclerView : RecyclerView
     lateinit var tweetUserNamesArray : ArrayList<String>
     lateinit var tweetTextsArray : ArrayList<String>
@@ -86,6 +88,31 @@ class HomeFragment : Fragment() {
         progressBar3.min = 0
 
         progressBar3.progress = currentProgress3
+
+        refreshBtn = view.findViewById(R.id.refreshBtn)
+        refreshBtn.setOnClickListener {
+
+            val coleccion = Firebase.firestore.collection("Metas")
+
+            val queryTask = coleccion.get()
+            queryTask.addOnSuccessListener { result ->
+                // recorrer datos
+                for (documentoActual in result) {
+                    Log.d(
+                        "FIRESTORE", "${documentoActual.id}"
+                    )
+                    var arroz = documentoActual.get("Arroz").toString().toInt()
+                    progressBar1.progress = arroz
+                    var rollos = documentoActual.get("Rollos").toString().toInt()
+                    progressBar2.progress = rollos
+                    var aceite = documentoActual.get("Aceite").toString().toInt()
+                    progressBar3.progress = aceite
+                }
+            }.addOnFailureListener { error ->
+                Log.e("FIRESTORE", "error in query: $error")
+            }
+
+        }
 
         val coleccion = Firebase.firestore.collection("Metas")
         val coleccion2 = Firebase.firestore.collection("LimitesMetas")
