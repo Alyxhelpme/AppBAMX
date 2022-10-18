@@ -28,6 +28,8 @@ class RootTabActivity : AppCompatActivity() {
 
         val adapter = TabPageAdapter(this, tabLayout.tabCount)
         viewPager.adapter = adapter
+        viewPager.currentItem = 1
+        viewPager.adapter = adapter
 
         viewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position:Int){

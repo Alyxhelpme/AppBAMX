@@ -28,6 +28,10 @@ lateinit var cantidadC : ArrayList<Int>
 lateinit var donation : HashMap<String, Any>
 lateinit var goals : HashMap<String, Any>
 
+var arroz = 0
+var rollos = 0
+var aceite = 0
+
 
 class MainActivity : AppCompatActivity() {
 
