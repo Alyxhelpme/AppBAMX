@@ -183,7 +183,7 @@ class MainActivity : AppCompatActivity() {
             }
             else {
                 val builder = AlertDialog.Builder(this@MainActivity).
-                setMessage("Acepta términos y condiciones")
+                setMessage("Por favor, acepta los términos y condiciones antes de iniciar")
                 val dialog = builder.create()
                 dialog.show()
             }
@@ -203,7 +203,7 @@ class MainActivity : AppCompatActivity() {
             }
             else {
                 val builder = AlertDialog.Builder(this@MainActivity).
-                setMessage("Acepta términos y condiciones")
+                setMessage("Por favor, acepta los términos y condiciones antes de iniciar")
                 val dialog = builder.create()
                 dialog.show()
             }
