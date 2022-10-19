@@ -81,6 +81,7 @@
 
         <Button
             android:id="@+id/payButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -124,8 +125,10 @@
             android:textColor="#40000B"
             android:textSize="24dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/payButton"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RV_ShoppingCar" />
+            app:layout_constraintTop_toBottomOf="@+id/RV_ShoppingCar"
+            app:layout_constraintVertical_bias="0.12" />
 
         <TextView
             android:id="@+id/emptyCar"
