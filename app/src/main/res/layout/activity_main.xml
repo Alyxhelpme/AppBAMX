@@ -71,4 +71,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/greetingMessage" />
 
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="18dp"
+        android:buttonTint="#BD0235"
+        android:minHeight="48dp"
+        android:text="Términos y condiciones"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="@+id/mailLoginButton"
+        app:layout_constraintTop_toBottomOf="@+id/mailLoginButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
